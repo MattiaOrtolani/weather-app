@@ -1,0 +1,52 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+
+    & > .title
+    {
+        font-size: 6rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        background: linear-gradient(90deg, #ffffff, #d0d0d0);
+        background-clip: text;
+        color: transparent;
+    }
+
+    & > .avg-temp
+    {
+        text-align: center;
+        font-size: 10rem;
+        background: linear-gradient(90deg, #ffffff, #d0d0d0);
+        background-clip: text;
+        color: transparent;
+    }
+
+    & > .description
+    {
+        font-size: 3rem;
+        text-align: center;
+        background: linear-gradient(90deg, #a6e6f9, #8ce4ff);
+        background-clip: text;
+        color: transparent;
+    }
+
+    & > .min-max
+    {
+        display: flex;
+        justify-content: space-between;
+
+        & > p
+        {
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ffffff, #d0d0d0);
+            background-clip: text;
+            color: transparent;
+        }
+    }
+}

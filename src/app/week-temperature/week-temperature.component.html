@@ -1,0 +1,13 @@
+@if(response)
+{
+    <div class="week-temperature">
+        @for (d of response.forecastday; track d)
+        {
+            <div class="week-temperature__day">
+                <img [src]="d.day.condition.icon" alt="">
+                <p class="degree">{{ d.day.avgtemp_c + ' °' }}</p>
+                <p class="day">{{ d.date | date:'dd EEE' }}</p>
+            </div>
+        }
+    </div>
+}

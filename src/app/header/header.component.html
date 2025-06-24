@@ -1,0 +1,12 @@
+@if(response)
+{
+    <div class="container">
+        <h1 class="title">{{ city }}</h1>
+        <h2 class="avg-temp">{{ response.forecastday[0].day.avgtemp_c + '°' }}</h2>
+        <h3 class="description">{{ response.forecastday[0].day.condition.text }}</h3>
+        <div class="min-max">
+            <p>max: {{ response.forecastday[0].day.maxtemp_c + '°'}}</p>
+            <p>min: {{ response.forecastday[0].day.mintemp_c + '°'}}</p>
+        </div>
+    </div>
+}

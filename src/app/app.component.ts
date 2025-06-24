@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { WeekTemperatureComponent } from "./week-temperature/week-temperature.component";
+import { HeaderComponent } from "./header/header.component";
+import { HoursTemperatureComponent } from "./hours-temperature/hours-temperature.component";
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent],
+  styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'weather-app';
+
+
+export class AppComponent
+{
+  title = 'Weather App';
 }
