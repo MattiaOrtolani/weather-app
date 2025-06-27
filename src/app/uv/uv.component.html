@@ -1,0 +1,26 @@
+<div class="uv-container">
+    <p class="uv-container__title">Indice UV</p>
+    <p class="uv-container__number">{{ uv }}</p>
+    <p class="uv-container__index">
+        @if(uv < 3)
+        {
+            Basso
+        }
+        @else if(uv < 6)
+        {
+            Moderato
+        }
+        @else if(uv < 8)
+        {
+            Alto
+        }
+        @else if(uv < 11)
+        {
+            Molto Alto
+        }
+        @else
+        {
+            Estremo
+        }
+    </p>
+</div>

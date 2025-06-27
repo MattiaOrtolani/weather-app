@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WeekTemperatureComponent } from "./week-temperature/week-temperature.component";
 import { HeaderComponent } from "./header/header.component";
 import { HoursTemperatureComponent } from "./hours-temperature/hours-temperature.component";
+import { UvComponent } from "./uv/uv.component";
+import { HumidityComponent } from "./humidity/humidity.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent],
+  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent, UvComponent, HumidityComponent],
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })

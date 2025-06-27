@@ -6,7 +6,7 @@
             <div class="week-temperature__day">
                 <img [src]="d.day.condition.icon" alt="">
                 <p class="degree">{{ d.day.avgtemp_c + ' °' }}</p>
-                <p class="day">{{ d.date | date:'dd EEE' }}</p>
+                <p class="day">{{ d.date | date:'d EEE' }}</p>
             </div>
         }
     </div>

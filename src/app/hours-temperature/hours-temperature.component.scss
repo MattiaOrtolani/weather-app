@@ -1,0 +1,46 @@
+.container
+{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    background-color: rgba(78, 78, 78, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 2rem 1rem;
+
+    .hour
+    {
+        min-width: 9rem ;
+        display: flex;
+        gap: .5rem;
+        flex-direction: column;
+        align-items: center;
+        border-right: 1px solid rgba(0, 0, 0, 0.293);
+
+        &:last-child
+        {
+            border-right: none;
+        }
+
+        &__number
+        {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        &__temp
+        {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        img
+        {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}

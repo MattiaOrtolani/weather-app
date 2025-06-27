@@ -1,10 +1,9 @@
 .week-temperature
 {
     display: flex;
-    background: linear-gradient(to top right, #0081c6, #14a8f2);
+    background-color: rgba(78, 78, 78, 0.3);
     padding: .5rem;
     border-radius: 25px;
-    outline: #14a8f2 3px solid;
 
     &__day
     {
@@ -13,7 +12,7 @@
         align-items: center;
         position: relative;
         width: calc(100% / 7);
-        border-right: 2px solid #24b5fe;
+        border-right: 1px solid rgba(0, 0, 0, 0.293);
 
         &:last-child
         {
