@@ -22,9 +22,7 @@ export class HumidityComponent {
           this.appService.getForecast().subscribe({
             next: (data) =>
             {
-              this.humidity = data.forecast.forecastday[0].day.avghumidity;
-              console.log('UV Index:', this.humidity);
-            },
+              this.humidity = data.forecast.forecastday[0].day.avghumidity;            },
             error: (err) => {
               console.error('Errore nel recupero dei dati:', err);
             }

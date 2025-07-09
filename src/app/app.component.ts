@@ -5,11 +5,12 @@ import { HeaderComponent } from "./header/header.component";
 import { HoursTemperatureComponent } from "./hours-temperature/hours-temperature.component";
 import { UvComponent } from "./uv/uv.component";
 import { HumidityComponent } from "./humidity/humidity.component";
+import { SunHoursComponent } from "./sun-hours/sun-hours.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent, UvComponent, HumidityComponent],
+  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent, UvComponent, HumidityComponent, SunHoursComponent],
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })

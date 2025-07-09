@@ -1,6 +1,7 @@
 .week-temperature
 {
     display: flex;
+    flex-direction: column;
     background-color: rgba(78, 78, 78, 0.3);
     padding: .5rem;
     border-radius: 25px;
@@ -8,17 +9,15 @@
     &__day
     {
         display: flex;
-        flex-direction: column;
         align-items: center;
         position: relative;
-        width: calc(100% / 7);
-        border-right: 1px solid rgba(0, 0, 0, 0.293);
+        margin: 0 1rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 
-        &:last-child
+        &:last-of-type
         {
-            border-right: none;
+            border-bottom: none;
         }
-
 
         & > img
         {
@@ -30,7 +29,7 @@
         {
             font-size: 2.2rem;
             color: rgb(211, 211, 211);
-            margin-top: .5rem;
+            width: 7rem;
         }
 
         & > .degree
@@ -38,7 +37,12 @@
             font-size: 2.4rem;
             color: white;
             font-weight: bold;
-            margin-top: .5rem;
+            margin-left: 1rem;
+
+            &:last-of-type
+            {
+                margin-left: auto;
+            }
         }
     }
 }

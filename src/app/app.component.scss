@@ -7,11 +7,26 @@ main
     margin-top: 2rem;
     gap: .7rem;
 
+    .row
+    {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 
-    & > .row
+    & .four-items
     {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    & .col
+    {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
         gap: 1rem;
     }
 }

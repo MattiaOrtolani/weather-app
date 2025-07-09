@@ -1,0 +1,29 @@
+.container
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(78, 78, 78, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 2rem;
+
+
+    &__title
+    {
+        font-size: 3rem;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    &__sunset
+    {
+        font-size: 4rem;
+        color: #fff;
+    }
+
+    &__sunrise
+    {
+        font-size: 1.6rem;
+        color: #fff;
+    }
+}

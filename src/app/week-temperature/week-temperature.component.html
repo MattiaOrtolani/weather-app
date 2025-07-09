@@ -4,9 +4,10 @@
         @for (d of response.forecastday; track d)
         {
             <div class="week-temperature__day">
-                <img [src]="d.day.condition.icon" alt="">
-                <p class="degree">{{ d.day.avgtemp_c + ' °' }}</p>
                 <p class="day">{{ d.date | date:'d EEE' }}</p>
+                <img [src]="d.day.condition.icon" alt="">
+                <p class="degree">{{ d.day.mintemp_c + '°' }}</p>
+                <p class="degree">{{ d.day.maxtemp_c + '°' }}</p>
             </div>
         }
     </div>
