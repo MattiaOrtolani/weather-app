@@ -1,7 +1,6 @@
-@if(response)
-{
+
     <div class="week-temperature">
-        @for (d of response.forecastday; track d)
+        @for (d of forecast.forecastday; track d)
         {
             <div class="week-temperature__day">
                 <p class="day">{{ d.date | date:'d EEE' }}</p>
@@ -11,4 +10,4 @@
             </div>
         }
     </div>
-}
+

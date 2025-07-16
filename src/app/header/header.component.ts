@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../app.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,30 +13,9 @@ import { AppService } from '../app.service';
 
 export class HeaderComponent 
 {
-
   appService = new AppService();
-  response: any = undefined;
-  city: string = '';
 
-  ngOnInit()
-  {
-    this.appService.city$.subscribe(
-      city => {
-        if(city)
-        {
-          this.city = city;
-          this.appService.getForecast().subscribe({
-            next: (data) =>
-            {
-              this.response = data.forecast;
-              console.log(this.response);
-            },
-            error: (err) => {
-              console.error('Errore nel recupero dei dati:', err);
-            }
-          })
-        }
-      }
-    )
-  }
+  @Input() forecastday: any;
+  city?: Observable<any> = this.appService.city$;
+
 }

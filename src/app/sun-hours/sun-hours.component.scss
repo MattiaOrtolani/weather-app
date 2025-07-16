@@ -6,6 +6,8 @@
     backdrop-filter: blur(10px);
     border-radius: 22px;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
 
 
     &__title
@@ -25,5 +27,6 @@
     {
         font-size: 1.6rem;
         color: #fff;
+        
     }
 }

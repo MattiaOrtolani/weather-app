@@ -1,12 +1,15 @@
 <main>
-    <app-header />
-    <app-hours-temperature />
-    <div class="row">
-        <app-week-temperature />
-        <div class="four-items">
-            <app-uv />
-            <app-humidity />
-            <app-sun-hours />
+    @if(resolve)
+    {
+        <app-header [forecastday]="weatherData?.forecast?.forecastday"/>
+        <app-hours-temperature [forecastday]="weatherData?.forecast?.forecastday" />
+        <div class="row">
+            <app-week-temperature [forecast]="weatherData?.forecast" />
+            <div class="four-items">
+                <app-uv [uv]="weatherData?.forecast?.forecastday[0]?.day?.uv" />
+                <app-humidity [humidity]="weatherData?.forecast?.forecastday[0]?.day?.avghumidity" />
+                <app-sun-hours [astro]="weatherData?.forecast?.forecastday[0]?.astro" />
+            </div>
         </div>
-    </div>
+    }
 </main>

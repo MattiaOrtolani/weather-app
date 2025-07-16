@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AppService } from '../app.service';
 
 @Component({
@@ -8,27 +8,5 @@ import { AppService } from '../app.service';
   styleUrl: './humidity.component.scss'
 })
 export class HumidityComponent {
-
-  appService = inject(AppService);
-
-  humidity: number = 0;
-
-  ngOnInit()
-  {
-    this.appService.city$.subscribe(
-      city => {
-        if(city)
-        {
-          this.appService.getForecast().subscribe({
-            next: (data) =>
-            {
-              this.humidity = data.forecast.forecastday[0].day.avghumidity;            },
-            error: (err) => {
-              console.error('Errore nel recupero dei dati:', err);
-            }
-          })
-        }
-      }
-    )
-  }
+  @Input() humidity!: number;
 }
