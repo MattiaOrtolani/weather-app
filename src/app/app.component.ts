@@ -7,11 +7,13 @@ import { UvComponent } from "./uv/uv.component";
 import { HumidityComponent } from "./humidity/humidity.component";
 import { SunHoursComponent } from "./sun-hours/sun-hours.component";
 import { AppService } from './app.service';
+import { WindComponent } from "./wind/wind.component";
+import { MoonHoursComponent } from "./moon-hours/moon-hours.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent, UvComponent, HumidityComponent, SunHoursComponent],
+  imports: [CommonModule, WeekTemperatureComponent, HeaderComponent, HoursTemperatureComponent, UvComponent, HumidityComponent, SunHoursComponent, WindComponent, MoonHoursComponent],
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
       next: (data) => {
         this.weatherData = data;
         this.resolve = true;
+        console.log('Dati meteo ricevuti:', this.weatherData);
       },
       error: (err) => {
         console.error('Errore nel recupero dei dati:', err);

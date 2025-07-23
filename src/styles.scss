@@ -18,5 +18,8 @@ html
 body
 {
     overscroll-behavior: none;
-    min-height: calc(100dvh - 2rem);
+    min-height: calc(100dvh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

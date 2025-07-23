@@ -1,13 +1,11 @@
-
-    <div class="week-temperature">
-        @for (d of forecast.forecastday; track d)
-        {
-            <div class="week-temperature__day">
-                <p class="day">{{ d.date | date:'d EEE' }}</p>
-                <img [src]="d.day.condition.icon" alt="">
-                <p class="degree">{{ d.day.mintemp_c + '°' }}</p>
-                <p class="degree">{{ d.day.maxtemp_c + '°' }}</p>
-            </div>
-        }
-    </div>
-
+<div class="week-temperature">
+    @for (d of forecast.forecastday; track d)
+    {
+        <div class="week-temperature__day">
+            <p class="day">{{ d.date | date:'d EEE' }}</p>
+            <img [src]="d.day.condition.icon" alt="">
+            <p class="degree">{{ d.day.mintemp_c + '°' }}</p>
+            <p class="degree">{{ d.day.maxtemp_c + '°' }}</p>
+        </div>
+    }
+</div>
