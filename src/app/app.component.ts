@@ -21,7 +21,7 @@ import { MoonHoursComponent } from "./moon-hours/moon-hours.component";
 
 export class AppComponent implements OnInit {
   title = 'Weather App';
-  weatherData: any = undefined;
+  weatherData: any = null;
   appService = new AppService();
   resolve: boolean = false;
 

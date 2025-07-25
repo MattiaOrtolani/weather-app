@@ -9,10 +9,10 @@
                 <app-moon-hours [astro]="weatherData?.forecast?.forecastday[0]?.astro"/>
             </div>
             <div class="four-items">
-                <app-uv [uv]="weatherData?.current.uv" />
+                <app-uv [uv]="weatherData?.current?.uv" />
                 <app-humidity [humidity]="weatherData?.current?.humidity" />
                 <app-sun-hours [astro]="weatherData?.forecast?.forecastday[0]?.astro"/>
-                <app-wind [wind_speed]="weatherData.current.wind_kph" [wind_direction]="weatherData.current.wind_dir" [wind_degree]="weatherData.current.windchill_c"/>
+                <app-wind [wind_speed]="weatherData?.current?.wind_kph" [wind_direction]="weatherData?.current?.wind_dir" [wind_degree]="weatherData?.current?.windchill_c"/>
             </div>
         </div>
     }
