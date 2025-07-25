@@ -9,6 +9,11 @@
     border-radius: 25px;
     position: relative;
 
+    @media (width <= 400px)
+    {
+        padding: 1rem;
+    }
+
     .title
     {
         display: flex;
