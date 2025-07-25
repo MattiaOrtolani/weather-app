@@ -6,6 +6,31 @@
     margin: 0 auto;
     margin-bottom: 2rem;
 
+    @media (max-width: 980px)
+    {
+        width: 75%;
+    }
+
+    @media (width <= 740px)
+    {
+        width: 90%;
+    }
+
+    @media (width <= 540px)
+    {
+        width: 80%;
+    }
+
+    @media (width <= 465px)
+    {
+        width: 80%;
+    }
+
+    @media (width <= 400px)
+    {
+        width: 90%;
+    }
+
     & > .title
     {
         font-size: 8rem;
@@ -15,6 +40,16 @@
         background: linear-gradient(90deg, #ffffff, #d0d0d0);
         background-clip: text;
         color: transparent;
+
+        @media only screen and (width <= 540px)
+        {
+            font-size: 7.5rem;
+        }
+
+        @media (width <= 400px)
+        {
+            font-size: 7rem;
+        }
     }
 
     & > .avg-temp
@@ -24,6 +59,11 @@
         background: linear-gradient(90deg, #ffffff, #d0d0d0);
         background-clip: text;
         color: transparent;
+
+        @media only screen and (width <= 540px)
+        {
+            font-size: 8rem;
+        }
     }
 
     & > .description
@@ -33,6 +73,7 @@
         background: linear-gradient(90deg, #a6e6f9, #8ce4ff);
         background-clip: text;
         color: transparent;
+        margin-bottom: 1rem;
     }
 
     & > .min-max
@@ -47,6 +88,32 @@
             background: linear-gradient(90deg, #ffffff, #d0d0d0);
             background-clip: text;
             color: transparent;
+
+            @media only screen and (width <= 740px)
+            {
+                font-size: 3.8rem;
+            }
+
+            @media only screen and (width <= 540px)
+            {
+                font-size: 3rem;
+            }
+
+            @media only screen and (width <= 465px)
+            {
+                font-size: 2.5rem;
+            }
+
+            @media (width <= 400px)
+            {
+                font-size: 2.2rem;
+            }
+
+
+            &:last-child
+            {
+                text-align: end;
+            }
         }
     }
 }

@@ -1,17 +1,28 @@
 .container
 {
-    display: flex;
+    max-width: 98rem;
     width: 100%;
-    overflow-x: scroll;
-    scrollbar-width: none;
     background-color: rgba(78, 78, 78, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 22px;
     padding: 2rem 1rem;
+    overflow: hidden;
+
+    .carousel
+    {
+        display: flex;
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+
+    @media (width <= 980px)
+    {
+        width: 100%;
+    }
 
     .hour
     {
-        min-width: 9rem ;
+        min-width: 9rem;
         display: flex;
         gap: .5rem;
         flex-direction: column;
