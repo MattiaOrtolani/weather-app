@@ -1,7 +1,7 @@
 <main>
     @if(resolve)
     {
-        <app-header [forecastday]="weatherData?.forecast?.forecastday"/>
+        <app-header [forecastday]="weatherData?.forecast?.forecastday[0]" [city]="weatherData?.location?.name"/>
         <app-hours-temperature [forecastday]="weatherData?.forecast?.forecastday" />
         <div class="row">
             <div class="two-items">

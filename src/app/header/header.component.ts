@@ -16,6 +16,6 @@ export class HeaderComponent
   appService = new AppService();
 
   @Input() forecastday: any;
-  city?: Observable<any> = this.appService.city$;
+  @Input() city: string = '';
 
 }
