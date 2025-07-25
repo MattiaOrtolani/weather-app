@@ -17,12 +17,42 @@
         {
             width: 2.8rem;
             height: 2.8rem;
+
+            @media (width <= 540px)
+            {
+                font-size: 2.4rem;
+            }
+
+            @media (width <= 465px)
+            {
+                font-size: 2.2rem;
+            }
+
+            @media (width <= 400px)
+            {
+                font-size: 2rem;
+            }
         }
 
         &__text
         {
             font-size: 2.8rem;
             text-transform: uppercase;
+
+            @media (width <= 540px)
+            {
+                font-size: 2.4rem;
+            }
+
+            @media (width <= 465px)
+            {
+                font-size: 2.2rem;
+            }
+
+            @media (width <= 400px)
+            {
+                font-size: 2rem;
+            }
         }
     }
 
@@ -31,6 +61,11 @@
         font-size: 6rem;
         margin-top: 1rem;
         color: #fff;
+
+        @media (width <= 400px)
+        {
+            font-size: 4rem;
+        }
     }
 
     &__index
