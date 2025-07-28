@@ -24,10 +24,15 @@
     {
         min-width: 9rem;
         display: flex;
-        gap: .5rem;
+        gap: .75rem;
         flex-direction: column;
         align-items: center;
         border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+        @media (width <= 540px)
+        {
+            min-width: 7rem;
+        }
 
         &:last-child
         {
@@ -39,6 +44,11 @@
             font-size: 2.2rem;
             font-weight: 700;
             color: #fff;
+
+            @media (width <= 540px)
+            {
+                font-size: 1.7rem;
+            }
         }
 
         &__temp
@@ -46,12 +56,23 @@
             font-size: 2rem;
             font-weight: 600;
             color: #fff;
+
+            @media (width <= 540px)
+            {
+                font-size: 1.7rem;
+            }
         }
 
         img
         {
-            width: 50px;
-            height: 50px;
+            width: 5rem;
+            height: 5rem;
+
+            @media (width <= 540px)
+            {
+                width: 4rem;
+                height: 4rem;
+            }
         }
     }
 }

@@ -44,9 +44,9 @@
             font-size: 7.5rem;
         }
 
-        @media (width <= 400px)
+        @media (width <= 540px)
         {
-            font-size: 7rem;
+            font-size: 4rem;
         }
     }
 
@@ -70,6 +70,11 @@
         background-clip: text;
         color: transparent;
         margin-bottom: 1rem;
+
+        @media only screen and (width <= 540px)
+        {
+            font-size: 2.5rem;
+        }
     }
 
     & > .min-max
@@ -90,12 +95,12 @@
 
             @media only screen and (width <= 540px)
             {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
             @media only screen and (width <= 465px)
             {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
 

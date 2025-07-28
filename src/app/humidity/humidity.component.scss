@@ -62,10 +62,34 @@
         }
     }
 
-    &__number
+    &__humidity
     {
-        margin-top: 2rem;
-        font-size: 6rem;
-        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 2rem);
+        width: 100%;
+
+        &--number
+        {
+            font-size: 7.5rem;
+            color: white;
+
+            @media (width <= 980px)
+            {
+                font-size: 6.5rem;
+            }
+
+            @media (width <= 465px)
+            {
+                font-size: 6rem;
+            }
+
+            @media (width <= 400px)
+            {
+                font-size: 5rem;
+            }
+        }
     }
+
 }
