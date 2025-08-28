@@ -49,12 +49,48 @@
 
         .graphic
         {
-            height: 4px;
+            height: 6px;
             width: 13.5rem;
             background-color: rgba(255, 255, 255, 0.25);
             margin: 0 auto;
             border-radius: 2px;
             position: relative;
+
+            @media (width <= 980px)
+            {
+                width: 34rem;
+                height: 8px;
+            }
+
+            @media (width <= 740px)
+            {
+                width: 24rem;
+                height: 8px;
+            }
+
+            @media (width <= 640px)
+            {
+                width: 18rem;
+                height: 6px;
+            }
+
+            @media (width <= 580px)
+            {
+                width: 16rem;
+                height: 6px;
+            }
+
+            @media (width <= 480px)
+            {
+                width: 12rem;
+                height: 6px;
+            }
+
+            @media (width <= 400px)
+            {
+                width: 9rem;
+                height: 6px;
+            }
 
             &__line
             {
@@ -74,18 +110,12 @@
             font-size: 2.4rem;
             color: white;
             font-weight: bold;
-            margin-left: 1rem;
             text-align: center;
 
             @media (width <= 540px)
             {
                 font-size: 1.8rem;
-                width: 5rem;
-            }
-
-            &:last-of-type
-            {
-                text-align: center;
+                width: 6rem;
             }
         }
     }
