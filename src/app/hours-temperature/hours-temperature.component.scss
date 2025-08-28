@@ -3,21 +3,27 @@
     max-width: 98rem;
     width: 100%;
     background-color: rgba(78, 78, 78, 0.3);
+    border: 1px solid #868686;
     backdrop-filter: blur(10px);
     border-radius: 22px;
     padding: 2rem 1rem;
     overflow: hidden;
+
+    @media (max-width: 540px)
+    {
+        padding: 1.5rem 1rem;
+    }
+
+    @media (max-width: 980px)
+    {
+        width: 100%;
+    }
 
     .carousel
     {
         display: flex;
         overflow-x: scroll;
         scrollbar-width: none;
-    }
-
-    @media (width <= 980px)
-    {
-        width: 100%;
     }
 
     .hour

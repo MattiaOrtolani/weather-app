@@ -5,6 +5,9 @@
             <p class="day">{{ d.date | date:'d EEE' }}</p>
             <img [src]="d.day.condition.icon" alt="">
             <p class="degree">{{ d.day.mintemp_c + '°' }}</p>
+            <div class="graphic">
+                <div class="graphic__line" #graphicLine></div>
+            </div>
             <p class="degree">{{ d.day.maxtemp_c + '°' }}</p>
         </div>
     }

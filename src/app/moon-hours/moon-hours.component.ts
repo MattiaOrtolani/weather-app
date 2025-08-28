@@ -8,4 +8,15 @@ import { Component, Input } from '@angular/core';
 })
 export class MoonHoursComponent {
   @Input() astro: any;
+
+  moonPhaseMap: Record<string, string> = {
+    "Full Moon": "Luna piena",
+    "New Moon": "Luna nuova",
+    "First Quarter": "Primo quarto",
+    "Last Quarter": "Ultimo quarto"
+  };
+
+  getTranslatedMoonPhase(phase: string): string {
+    return this.moonPhaseMap[phase] || phase;
+  }
 }
