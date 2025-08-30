@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root
+{
+    --primary-color: #262b5b;
+    --secondary-color: #e94e1b;
+}
+
 *
 {
     margin: 0;
@@ -12,7 +18,7 @@ html
     font-size: 62.5%; /* 1rem = 10px */
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: #1c1c1c;
+    background-color: var(--primary-color);
 }
 
 body
