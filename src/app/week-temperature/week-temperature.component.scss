@@ -14,7 +14,7 @@
     .selector
     {
         width: calc(100% - 1rem);
-        height: 6.2rem;
+        height: 5.6rem;
         border: 2px solid rgba(255, 255, 255, 0.748);
         border-radius: 20px;
         position: absolute;
@@ -29,18 +29,42 @@
     {
         display: flex;
         align-items: center;
-        margin: -.055rem 1rem;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-
-        &:last-of-type
+        margin: 0 1rem;
+        
+        &:nth-child(3)
         {
-            border-bottom: none;
+            position: relative;
+            margin: .5rem 1rem;
+
+            &::after
+            {
+                content: '';
+                position: absolute;
+                top: -.3rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 96%;
+                height: 2px;
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+
+            &::before
+            {
+                content: '';
+                position: absolute;
+                bottom: -.3rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 96%;
+                height: 2px;
+                background-color: rgba(255, 255, 255, 0.25);
+            }
         }
 
         & > img
         {
-            width: 6rem;
-            height: 6rem;
+            width: 5.6rem;
+            height: 5.6rem;
 
             @media (width <= 540px)
             {
