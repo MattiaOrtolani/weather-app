@@ -1,6 +1,6 @@
 <div class="container">
     <div class="carousel">
-        @for( h of forecastday[0].hour; let i = $index; track h)
+        @for( h of forecastday[selectedDay].hour; let i = $index; track h)
         {
             <div class="hour">
                 <p class="hour__number">{{ i }}</p>

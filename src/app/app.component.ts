@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
   weatherData: any = null;
   resolve = false;
   errorMessage = '';
+  hoursTemperatureSelected = 0;
 
   private appService = inject(AppService);
 
@@ -57,5 +58,9 @@ export class AppComponent implements OnInit {
         console.error('Errore geolocalizzazione:', err);
         this.errorMessage = 'Geolocalizzazione disattivata o non disponibile.';
       });
+  }
+
+  onSelectDay(event: any) {
+    this.hoursTemperatureSelected = event;
   }
 }

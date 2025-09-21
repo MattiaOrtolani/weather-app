@@ -10,4 +10,5 @@ import { AppService } from '../app.service';
 })
 export class HoursTemperatureComponent {
   @Input() forecastday: any;
+  @Input() selectedDay: number = 0;
 }

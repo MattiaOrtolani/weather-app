@@ -1,12 +1,18 @@
-<div class="week-temperature">
-    @for (d of forecast.forecastday; track d)
+<div class="week-temperature" [style.justify-content]="alignment">
+    <div class="selector"></div>
+    @for (d of forecast.forecastday; track d; let i = $index)
     {
-        <div class="week-temperature__day">
+        <div class="week-temperature__day" (click)="selectDay(i)">
             <p class="day">{{ d.date | date:'d EEE' }}</p>
             <img [src]="d.day.condition.icon" alt="">
             <p class="degree">{{ d.day.mintemp_c + '°' }}</p>
             <div class="graphic">
-                <div class="graphic__line" #graphicLine></div>
+                <div class="graphic__line"
+                    [style.--start]="computedStyles[i]?.start"
+                    [style.--len]="computedStyles[i]?.len"
+                    [style.--c1]="computedStyles[i]?.c1"
+                    [style.--c2]="computedStyles[i]?.c2">
+                </div>
             </div>
             <p class="degree">{{ d.day.maxtemp_c + '°' }}</p>
         </div>

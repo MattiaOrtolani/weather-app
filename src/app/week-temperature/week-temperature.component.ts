@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChildren, ElementRef, QueryList, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -9,21 +9,17 @@ import { DatePipe } from '@angular/common';
   styleUrl: './week-temperature.component.scss'
 })
 
-export class WeekTemperatureComponent implements AfterViewInit, OnChanges 
+export class WeekTemperatureComponent implements OnChanges 
 {
   @Input() forecast: any;
+  @Output() selectDayEvent = new EventEmitter<any>();
 
-  // raccoglie tutte le barre visive
-  @ViewChildren('graphicLine') graphicLines!: QueryList<ElementRef<HTMLElement>>;
+  alignment: 'flex-start' | 'center' | 'flex-end' = 'flex-start';
+  computedStyles: Array<{ start: string; len: string; c1: string; c2: string }> = [];
 
   private minT!: number; // scala dinamica
   private maxT!: number; // scala dinamica
   private span!: number; // maxT - minT
-
-  ngAfterViewInit(): void 
-  {
-    this.updateBars();
-  }
 
   ngOnChanges(_: SimpleChanges): void 
   {
@@ -45,8 +41,8 @@ export class WeekTemperatureComponent implements AfterViewInit, OnChanges
       this.span = Math.max(1, this.maxT - this.minT); // evita 0
     }
 
-    // quando cambia l'input, aggiorna le barre (se la view non è pronta, avverrà anche in ngAfterViewInit)
-    this.updateBars();
+    // quando cambia l'input, ricalcola i valori per il binding degli stili
+    this.recomputeStyles();
   }
 
   private clamp(v: number, a: number, b: number): number 
@@ -75,21 +71,20 @@ export class WeekTemperatureComponent implements AfterViewInit, OnChanges
     }
   }
 
-  private updateBars(): void 
+  private recomputeStyles(): void
   {
-
-    if (!this.forecast || !this.forecast.forecastday || !this.graphicLines || this.graphicLines.length === 0 || this.span == null) 
+    if (!this.forecast || !this.forecast.forecastday || this.span == null)
     {
+      this.computedStyles = [];
       return;
     }
 
     const days = this.forecast.forecastday as Array<any>;
-
-    for (let i = 0; i < this.graphicLines.length && i < days.length; i++) 
-    {
-      const d = days[i];
-      const el = this.graphicLines.get(i)?.nativeElement;
-      if (!el || !d?.day) continue;
+    this.computedStyles = days.map(d => {
+      if (!d?.day)
+      {
+        return { start: '0%', len: '0%', c1: 'transparent', c2: 'transparent' };
+      }
 
       const minRaw: number = Number(d.day.mintemp_c);
       const maxRaw: number = Number(d.day.maxtemp_c);
@@ -104,10 +99,20 @@ export class WeekTemperatureComponent implements AfterViewInit, OnChanges
       const c1 = `hsl(${this.tempToHue(min)}, 95%, 50%)`;
       const c2 = `hsl(${this.tempToHue(max)}, 90%, 45%)`;
 
-      el.style.setProperty('--start', startPct.toFixed(2) + '%');
-      el.style.setProperty('--len',   lenPct.toFixed(2) + '%');
-      el.style.setProperty('--c1', c1);
-      el.style.setProperty('--c2', c2);
-    }
+      return {
+        start: startPct.toFixed(2) + '%',
+        len: lenPct.toFixed(2) + '%',
+        c1,
+        c2
+      };
+    });
+  }
+
+  selectDay(index: any)
+  {
+    this.selectDayEvent.emit(index);
+    const alignments: Record<number, 'flex-start'|'center'|'flex-end'> = { 0: 'flex-start', 1: 'center', 2: 'flex-end' };
+    const alignmentKey = Number(index);
+    this.alignment = alignments[alignmentKey] ?? 'flex-start';
   }
 }
