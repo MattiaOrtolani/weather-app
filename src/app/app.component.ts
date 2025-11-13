@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
           next: (data) => {
             this.weatherData = data;
             this.resolve = true;
-            console.log('Dati meteo ricevuti:', this.weatherData);
+            console.log('getForecast:', this.weatherData);
           },
           error: (err) => {
             console.error('Errore nel recupero dei dati meteo:', err);
@@ -58,9 +58,26 @@ export class AppComponent implements OnInit {
         console.error('Errore geolocalizzazione:', err);
         this.errorMessage = 'Geolocalizzazione disattivata o non disponibile.';
       });
+
+      
   }
 
   onSelectDay(event: any) {
     this.hoursTemperatureSelected = event;
+  }
+
+  onSearch(cityName: string) {
+
+    this.appService.getForecastByCity(cityName).subscribe({
+      next: (data) => {
+        this.weatherData = data;
+        this.resolve = true;
+        console.log('getForecastByCity:', this.weatherData);
+      },
+      error: (err) => {
+        console.error('Errore nel recupero dei dati meteo per città:', err);
+        this.errorMessage = 'Impossibile ottenere i dati meteo per la città cercata.';
+      }
+    });
   }
 }

@@ -1,6 +1,6 @@
 # Weather App
 
-Applicazione meteo sviluppata con Angular 19. Mostra condizioni attuali, previsioni orarie e dei prossimi tre giorni. La posizione viene ricavata automaticamente dall'indirizzo IP; i dati provengono da WeatherAPI.
+Applicazione meteo sviluppata con Angular 19. Mostra condizioni attuali, previsioni orarie e dei prossimi tre giorni. La posizione viene ricavata tramite Geolocation API del browser (navigator.geolocation); i dati provengono da WeatherAPI.
 
 ## Perché
 
@@ -8,7 +8,7 @@ Obiettivo del progetto: imparare a consumare API in Angular utilizzando gli Obse
 
 ## Funzionalità
 
-- Rilevamento posizione tramite IP
+- Rilevamento posizione tramite Geolocation API del browser
 - Previsioni per le prossime 72 ore e per i prossimi tre giorni
 - Condizioni attuali: temperatura, vento, umidità, indice UV
 - Orari di alba e tramonto
@@ -121,7 +121,6 @@ src/
 │   ├── app.service.ts
 │   └── app.config.ts
 ├── api/
-│   ├── ip.js
 │   └── forecast.js
 ├── styles.scss
 └── .env
@@ -131,12 +130,12 @@ src/
 
 L'app utilizza WeatherAPI. Per i dettagli sugli endpoint e sui limiti consulta la documentazione ufficiale: https://www.weatherapi.com/docs/
 
-Endpoint principali usati:
-- `ip.json`: rilevamento approssimativo della posizione tramite IP
-- `forecast.json`: condizioni attuali e previsioni
+Endpoint principale usato:
+- `forecast.json` con query `q={lat},{lon}`: condizioni attuali e previsioni
 
 ## Note
 
-- Il rilevamento tramite IP è approssimativo e dipende dal provider.
+- Il rilevamento posizione richiede il consenso dell'utente nel browser.
+- Se la geolocalizzazione è negata o non supportata, l'app non può ottenere le coordinate e non mostra i dati meteo (nessun fallback via IP).
 - I limiti del piano gratuito di WeatherAPI possono influire su frequenza e quantità di richieste.
 - Problemi comuni: errore 401 → verifica `API_KEY`; CORS → avvia tramite `npm run start-all` per usare il backend locale.

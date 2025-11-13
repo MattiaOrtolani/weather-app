@@ -1,7 +1,7 @@
 <main>
     @if(resolve)
     {
-        <app-header [forecastday]="weatherData?.forecast?.forecastday[0]" [city]="weatherData?.location?.name"/>
+        <app-header [forecastday]="weatherData?.forecast?.forecastday[0]" [city]="weatherData?.location?.name" (search)="onSearch($event)"/>
         <app-hours-temperature [forecastday]="weatherData?.forecast?.forecastday" [selectedDay]="hoursTemperatureSelected"/>
         <div class="row">
             <div class="two-items">

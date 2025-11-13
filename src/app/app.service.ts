@@ -42,4 +42,19 @@ export class AppService {
             return of(null);
         }
     }
+
+    /**
+     * Chiama l'API interna passando il nome della città (usa parametro 'q')
+     */
+    getForecastByCity(city: string): Observable<any> {
+        const q = city?.trim();
+        if (q) {
+            return this.http.get<any>(`/api/forecast`, {
+                params: { q }
+            });
+        } else {
+            console.warn('Nome della città non disponibile');
+            return of(null);
+        }
+    }
 }

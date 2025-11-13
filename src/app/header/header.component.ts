@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../app.service';
-import { Observable } from 'rxjs';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, SearchBarComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -17,5 +19,12 @@ export class HeaderComponent
 
   @Input() forecastday: any;
   @Input() city: string = '';
+  @Output() search = new EventEmitter<string>();
+
+  onSearch(cityName: string)
+  {
+    this.search.emit(cityName);
+  }
+
 
 }
