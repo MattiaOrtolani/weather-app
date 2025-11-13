@@ -9,6 +9,7 @@ import { SunHoursComponent } from "./sun-hours/sun-hours.component";
 import { AppService } from './app.service';
 import { WindComponent } from "./wind/wind.component";
 import { MoonHoursComponent } from "./moon-hours/moon-hours.component";
+import { LoadingItemComponent } from "./loading-item/loading-item.component";
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,9 @@ import { MoonHoursComponent } from "./moon-hours/moon-hours.component";
     HumidityComponent,
     SunHoursComponent,
     WindComponent,
-    MoonHoursComponent
-  ],
+    MoonHoursComponent,
+    LoadingItemComponent
+],
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })
