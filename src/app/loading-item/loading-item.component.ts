@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class LoadingItemComponent {
 
+  loading_text = ["P", "r", "e", "p", "a", "r", "o", "i", "l", "m", "e", "t", "e", "o", ".", ".", "."];
 }
