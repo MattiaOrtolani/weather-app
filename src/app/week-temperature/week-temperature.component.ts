@@ -13,6 +13,7 @@ export class WeekTemperatureComponent implements OnChanges
 {
   @Input() forecast: any;
   @Output() selectDayEvent = new EventEmitter<any>();
+  selectedDayIndex: number = 0;
 
   alignment: 'flex-start' | 'center' | 'flex-end' = 'flex-start';
   computedStyles: Array<{ start: string; len: string; c1: string; c2: string }> = [];
@@ -111,8 +112,6 @@ export class WeekTemperatureComponent implements OnChanges
   selectDay(index: any)
   {
     this.selectDayEvent.emit(index);
-    const alignments: Record<number, 'flex-start'|'center'|'flex-end'> = { 0: 'flex-start', 1: 'center', 2: 'flex-end' };
-    const alignmentKey = Number(index);
-    this.alignment = alignments[alignmentKey] ?? 'flex-start';
+    this.selectedDayIndex = index;
   }
 }

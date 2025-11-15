@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output, output, OutputEmitterRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hours-temperature',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './hours-temperature.component.html',
   styleUrl: './hours-temperature.component.scss'

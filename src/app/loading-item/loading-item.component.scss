@@ -46,7 +46,7 @@
                 {
                     &:nth-child(#{$i}) 
                     {
-                        $angle: ($i - 1) * (360deg / 16);
+                        $angle: ($i - 1) * calc(360deg / 16);
                         transform: rotate($angle) translateY(-8.2rem);
 
                         @if($i % 2 == 0)

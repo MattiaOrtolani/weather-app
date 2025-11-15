@@ -68,10 +68,11 @@ main
             grid-template-columns: repeat(2, calc(50% - .6rem));
             grid-template-rows: repeat(2, calc(50% - .6rem));
             gap: 1.2rem;
+            aspect-ratio: 1 / 1;
 
             @media (width <= 980px)
             {
-                height: 39.2rem;
+                height: 45rem;
             }
 
             @media (width <= 540px)
@@ -89,17 +90,36 @@ main
                 width: 36rem;
                 grid-template-rows: repeat(2, 17.4rem);
             }
+
+            & > *
+            {
+                height: 100%;
+            }
         }
 
         & .two-items
         {
+            width: 100%;
             display: grid;
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-rows: repeat(2, calc(50% - .6rem));
             gap: 1.2rem;
+            aspect-ratio: 1 / 1;
+
+            /* tra 980px e 540px: rettangoli alti ~21.9rem */
+            @media (width <= 980px) and (width > 540px)
+            {
+                height: 45rem;
+            }
 
             @media (width <= 400px)
             {
                 width: 36rem;
+                height: 36rem;
+            }
+
+            & > *
+            {
+                height: 100%;
             }
         }
     }

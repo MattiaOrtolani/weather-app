@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-moon-hours',
+  standalone: true,
   imports: [],
   templateUrl: './moon-hours.component.html',
   styleUrl: './moon-hours.component.scss'
@@ -10,10 +11,14 @@ export class MoonHoursComponent {
   @Input() astro: any;
 
   moonPhaseMap: Record<string, string> = {
-    "Full Moon": "Luna piena",
     "New Moon": "Luna nuova",
+    "Waxing Crescent": "Luna crescente",
     "First Quarter": "Primo quarto",
-    "Last Quarter": "Ultimo quarto"
+    "Waxing Gibbous": "Gibbosa crescente",
+    "Full Moon": "Luna piena",
+    "Waning Gibbous": "Gibbosa calante",
+    "Last Quarter": "Ultimo quarto",
+    "Waning Crescent": "Luna calante"
   };
 
   getTranslatedMoonPhase(phase: string): string {

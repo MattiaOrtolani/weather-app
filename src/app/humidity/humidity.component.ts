@@ -3,6 +3,7 @@ import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-humidity',
+  standalone: true,
   imports: [],
   templateUrl: './humidity.component.html',
   styleUrl: './humidity.component.scss'

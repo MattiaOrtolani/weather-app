@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sun-hours',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './sun-hours.component.html',
   styleUrl: './sun-hours.component.scss'
