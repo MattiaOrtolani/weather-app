@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output, OutputEmitterRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-hours-temperature',
@@ -9,6 +8,13 @@ import { AppService } from '../app.service';
   styleUrl: './hours-temperature.component.scss'
 })
 export class HoursTemperatureComponent {
-  @Input() forecastday: any;
-  @Input() selectedDay: number = 0;
+  @Input() hour: any;
+  @Output() selectedHour = new EventEmitter<number>();
+  selectedHourIndex: number = 0; // variabile per tenere traccia dell'ora selezionata
+
+  onClick(hour: number)
+  {
+    this.selectedHourIndex = hour; 
+    this.selectedHour.emit(hour);
+  }
 }

@@ -2,11 +2,11 @@
 {
     max-width: 98rem;
     width: 100%;
+    height: 19rem;
     background-color: rgba(78, 78, 78, 0.3);
     border: 1px solid #868686;
     backdrop-filter: blur(10px);
     border-radius: 22px;
-    padding: 2rem 1rem;
     overflow: hidden;
 
     @media (max-width: 540px)
@@ -22,18 +22,61 @@
     .carousel
     {
         display: flex;
+        align-items: center;
         overflow-x: scroll;
         scrollbar-width: none;
+        height: 100%;
+        padding: 0 1rem;
     }
 
     .hour
     {
-        min-width: 9rem;
+        min-width: 10rem;
+        height: 80%;
         display: flex;
+        justify-content: center;
         gap: .75rem;
         flex-direction: column;
         align-items: center;
-        border-right: 1px solid rgba(255, 255, 255, 0.25);
+        position: relative;
+
+        @for $i from 1 through 24
+        {
+            @if($i % 2 == 0)
+            {
+                &:nth-child(#{$i})
+                {
+
+                    @if($i != 24)
+                    {
+                        &::after
+                        {
+                            content: '';
+                            width: 1px;
+                            height: 75%;
+                            background-color: #868686;
+                            position: absolute;
+                            right: 0;
+                            z-index: -1;
+                        }
+                    }
+
+                    &::before
+                    {
+                        content: '';
+                        width: 1px;
+                        height: 75%;
+                        background-color: #868686;
+                        position: absolute;
+                        left: 0;
+                        z-index: -1;
+                    }
+                }
+            }
+
+        }
+
+        
 
         @media (width <= 540px)
         {
@@ -79,6 +122,14 @@
                 width: 4rem;
                 height: 4rem;
             }
-        }
+        }   
     }
+}
+
+.selected-hour
+{
+    outline: 2px solid #fff;
+    outline-offset: -1px;
+    border-radius: 22px;
+    z-index: 9999;
 }

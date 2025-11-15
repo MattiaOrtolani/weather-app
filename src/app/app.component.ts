@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
   weatherData: any = null;
   resolve = false;
   errorMessage = '';
-  hoursTemperatureSelected = 0;
+  daySelected = 0;
+  hourSelected = 0;
 
   private appService = inject(AppService);
 
@@ -65,7 +66,7 @@ export class AppComponent implements OnInit {
   }
 
   onSelectDay(event: any) {
-    this.hoursTemperatureSelected = event;
+    this.daySelected = event;
   }
 
   onSearch(cityName: string) {
@@ -81,5 +82,10 @@ export class AppComponent implements OnInit {
         this.errorMessage = 'Impossibile ottenere i dati meteo per la città cercata.';
       }
     });
+  }
+
+  onSelectedHour(event: any) {
+    console.log('Ora selezionata:', event);
+    this.hourSelected = event;
   }
 }
