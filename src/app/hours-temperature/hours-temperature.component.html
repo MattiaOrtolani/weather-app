@@ -10,7 +10,13 @@
         @for( h of hour; let i = $index; track i)
         {
             <div class="hour" (click)="onClick(i)" [class.selected-hour]="i === selectedHourIndex">
-                <p class="hour__number">{{ i }}</p>
+                @if(i === currentHour && selectedDay === 0)
+                {
+                    <p class="hour__number">Adesso</p>
+                }
+                @else {
+                    <p class="hour__number">{{ i }}</p>
+                }
                 <img [src]="h.condition.icon" alt="">
                 <p class="hour__temp">{{ h.temp_c + '°'}}</p>
             </div>
