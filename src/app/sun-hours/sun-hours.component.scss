@@ -6,14 +6,9 @@
     border: 1px solid #868686;
     backdrop-filter: blur(10px);
     border-radius: 22px;
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-
-    @media (width <= 400px)
-    {
-        padding: 1.5rem;
-    }
 
     .title
     {
