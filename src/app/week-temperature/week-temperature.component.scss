@@ -1,69 +1,29 @@
+@use '../../styles/mixin' as *;
+
 .container
 {
-    width: 100%;
-    height: 100%;
+    @include container-style(.5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(78, 78, 78, 0.3);
-    border: 1px solid #868686;
-    padding: .5rem;
-    border-radius: 25px;
     position: relative;
 
     .title
     {
-        display: flex;
-        align-items: center;
+        @include card-title-base;
         align-self: start;
-        gap: .5rem;
-        color: var(--secondary-color);
         margin-top: 1rem;
         margin-left: 1rem;
 
         & svg
         {
-            width: 2.4rem;
-            height: 2.4rem;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                width: 2.2rem;
-                height: 2.2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                width: 2rem;
-                height: 2rem;
-            }
+            @include card-title-icon;
         }
 
         &__text
         {
-            font-size: 2.4rem;
-            text-transform: uppercase;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                font-size: 2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                font-size: 1.8rem;
-            }
+            @include card-title-text;
         }
     }
 
@@ -82,6 +42,7 @@
             display: flex;
             align-items: center;
             position: relative;
+            padding: .1rem;
 
             &:nth-child(2)
             {
@@ -113,44 +74,21 @@
     
             & > img
             {
-                width: 5.6rem;
-                height: 5.6rem;
+                width: var(--image-size);
+                height: var(--image-size);
     
-                @media (width <= 980px)
-                {
-                    width: 5rem;
-                    height: 5rem;
-                }
-
-                @media (width <= 465px)
-                {
-                    width: 4.5rem;
-                    height: 4.5rem;
-                }
-
-                @media (width <= 400px)
-                {
-                    width: 4rem;
-                    height: 4rem;
-                }
+                
             }
 
             & .day
             {
-                font-size: 2.2rem;
+                font-size: var(--font-size-base);
                 color: #fff;
                 min-width: 7.5rem;
                 margin-left: 1rem;
-    
-                @media (width <= 540px)
-                {
-                    font-size: 2rem;
-                    min-width: 6.8rem;
-                }
 
                 @media (width <= 460px)
                 {
-                    font-size: 1.8rem;
                     min-width: 6.6rem;
                 }
             }
@@ -199,7 +137,7 @@
             & > .degree
             {
                 min-width: 6rem;
-                font-size: 2.4rem;
+                font-size: var(--font-size-base);
                 color: white;
                 font-weight: bold;
                 text-align: center;
@@ -211,23 +149,16 @@
     
                 @media (width <= 540px)
                 {
-                    font-size: 2rem;
-                    min-width: 6rem;
-                }
-
-                @media (width <= 460px)
-                {
-                    font-size: 1.8rem;
                     min-width: 6rem;
                 }
             }
         }
     }
-
 }
 
 .selected
 {
     outline: 2px solid #fff;
     border-radius: 22px;
+    transition: all .15s ease-in-out;
 }

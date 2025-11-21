@@ -1,3 +1,5 @@
+
+
 <main>
     @if (resolve) {
     <app-header
@@ -6,69 +8,132 @@
         (search)="onSearch($event); resolve = false"
     />
 
-    <app-hours-temperature
-        [hour]="weatherData?.forecast?.forecastday[selectedDay]?.hour"
-        (selectedHour)="onSelectedHour($event)"
-        [selectedDay]="selectedDay"
-    />
+    <div class="grid">
+        <app-hours-temperature
+            [hour]="weatherData?.forecast?.forecastday[selectedDay]?.hour"
+            (selectedHour)="onSelectedHour($event)"
+            [selectedDay]="selectedDay"
+        />
 
-    <div class="row">
-        <div class="two-items">
-            <app-week-temperature
-                [forecast]="weatherData?.forecast"
-                (selectDayEvent)="onSelectDay($event)"
-            />
-            <app-moon-hours
-                [astro]="weatherData?.forecast?.forecastday[selectedDay]?.astro"
-            />
-        </div>
+        <app-week-temperature
+            [forecast]="weatherData?.forecast"
+            (selectDayEvent)="onSelectDay($event)"
+        />
 
-        <div class="four-items">
-            <!-- UV alla stessa ora -->
-            <app-uv
-                [uv]="
-                    weatherData?.forecast?.forecastday[selectedDay]?.hour[
-                        hourSelected
-                    ]?.uv ??
-                    weatherData?.forecast?.forecastday[selectedDay]?.day?.uv
-                "
-            />
+        <app-moon-hours
+            [astro]="weatherData?.forecast?.forecastday[selectedDay]?.astro"
+        />
 
-            <!-- Umidità alla stessa ora (fallback media giornaliera) -->
-            <app-humidity
-                [humidity]="
-                    weatherData?.forecast?.forecastday[selectedDay]?.hour[
-                        hourSelected
-                    ]?.humidity ??
-                    weatherData?.forecast?.forecastday[selectedDay]?.day
-                        ?.avghumidity
-                "
-            />
+        <app-pressure
+            [pressure]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.pressure_mb ?? weatherData?.current?.pressure_mb
+            "
 
-            <!-- Ore di sole della giornata selezionata -->
-            <app-sun-hours
-                [astro]="weatherData?.forecast?.forecastday[selectedDay]?.astro"
-            />
+            [prevPressure]="OnprevPressure()"
+        />
 
-            <!-- Vento alla stessa ora -->
-            <app-wind
-                [wind_speed]="
-                    weatherData?.forecast?.forecastday[selectedDay]?.hour[
-                        hourSelected
-                    ]?.wind_kph ?? weatherData?.current?.wind_kph
+        <app-humidity
+            [humidity]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.humidity ??
+                weatherData?.forecast?.forecastday[selectedDay]?.day
+                    ?.avghumidity
+            "
+            [dew_point]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.uv ??
+                weatherData?.forecast?.forecastday[selectedDay]?.day?.dewpoint_c
+            "
+        />
+
+        <app-sun-hours
+            [astro]="weatherData?.forecast?.forecastday[selectedDay]?.astro"
+        />
+
+        <app-wind
+            [wind_speed]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.wind_kph ?? weatherData?.current?.wind_kph
+            "
+            [wind_direction]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.wind_dir ?? weatherData?.current?.wind_dir
+            "
+            [wind_degree]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.wind_degree ?? weatherData?.current?.wind_degree
+            "
+            [wind_chill]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.windchill_c ?? weatherData?.current?.windchill_c
+            "
+        />
+
+        <app-feels-like-temperature
+            [feelsLikeTemperature]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.feelslike_c ?? weatherData?.current?.feelslike_c
+            "
+            [temp_c]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.temp_c ?? weatherData?.current?.temp_c
+            "
+        />
+
+        <app-visibility
+            [visibility]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.vis_km ?? weatherData?.current?.vis_km
+            "
+        />
+
+        <app-uv
+            [uv]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.uv ??
+                weatherData?.forecast?.forecastday[selectedDay]?.day?.uv
+            "
+        />
+
+        <app-cloud-cover
+            [cloudCover]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.cloud ?? weatherData?.current?.cloud
+            "
+        />
+
+        @if(hourSelected === currentHours()) {
+        <app-air-quality
+            [airQualityIndex]="
+                    weatherData?.current?.air_quality?.['us-epa-index'] ?? 0
                 "
-                [wind_direction]="
-                    weatherData?.forecast?.forecastday[selectedDay]?.hour[
-                        hourSelected
-                    ]?.wind_dir ?? weatherData?.current?.wind_dir
-                "
-                [wind_degree]="
-                    weatherData?.forecast?.forecastday[selectedDay]?.hour[
-                        hourSelected
-                    ]?.wind_degree ?? weatherData?.current?.wind_degree
-                "
-            />
-        </div>
+        />
+        }
+
+        <app-precipitation
+            [precipitation]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.precip_mm ??
+                weatherData?.forecast?.forecastday[selectedDay]?.day
+                    ?.totalprecip_mm
+            "
+
+            [precipitationForecast]="OnPrecipitationForecastDay()"
+        />
     </div>
     } @else {
     <app-loading-item></app-loading-item>

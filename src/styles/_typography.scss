@@ -1,0 +1,49 @@
+:root {
+    --font-size-base: 2rem;
+    --title-font: 2.4rem;
+    --font-size-2: 4.5rem;
+    --number-hours-font: 2rem;
+    --number-hours-weight: 700;
+    --compass-size: clamp(13rem, 17vw, 17rem);
+    --compass-text-size: 1.8rem;
+    --compass-coordinates-size: 1.6rem;
+    --compass-item-size: 1.2rem;
+    --image-size: 5rem;
+
+    @media (width <= 980px) {
+        --font-size-base: 1.8rem;
+        --compass-text-size: 1.6rem;
+        --image-size: 4.5rem;
+    }
+
+    @media (width <= 900px) {
+        --compass-size: clamp(13rem, 20vw, 15.5rem);
+        --compass-text-size: clamp(1.3rem, 1.8vw, 1.9rem);
+    }
+
+    @media (width <= 620px) {
+        --font-size-base: 1.6rem;
+        --compass-size: clamp(11rem, 32vw, 16rem);
+        --compass-text-size: clamp(1.3rem, 1.8vw, 1.5rem);
+        --image-size: 5rem;
+    }
+
+    @media (width <= 465px) {
+        --title-font: 2rem;
+        --image-size: 4.5rem;
+    }
+
+    @media (width <= 400px) {
+        --font-size-base: 1.4rem;
+        --title-font: 1.8rem;
+        --number-hours-font: 1.6rem;
+        --number-hours-weight: 600;
+        --font-size-2: 3.4rem;
+        --image-size: 4rem;
+    }
+
+    @media (width <= 350px) {
+        --title-font: 1.4rem;
+        --image-size: 3.6rem;
+    }
+}

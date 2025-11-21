@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also use other style files */
+@use './styles/typography' as *;
 
 :root
 {
@@ -18,14 +19,13 @@ html
     font-size: 62.5%; /* 1rem = 10px */
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: var(--primary-color);
 }
 
 body
 {
-    overscroll-behavior: none;
     min-height: calc(100dvh);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--primary-color);
 }

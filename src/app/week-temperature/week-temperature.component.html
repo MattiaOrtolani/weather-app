@@ -7,7 +7,7 @@
         <h1 class="title__text">Previsione per 3 giorni</h1>
     </div>
     <div class="week-temperature">
-        @for (d of forecast.forecastday; track d; let i = $index)
+        @for (d of forecast().forecastday; track d; let i = $index)
         {
             <div class="week-temperature__day" (click)="selectDay(i)" [class.selected]="i === selectedDayIndex">
                 <p class="day">{{ d.date | date:'d EEE' }}</p>

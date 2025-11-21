@@ -1,132 +1,226 @@
+@use '../../styles/mixin' as *;
+
 .container
 {
+    @include container-style;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(78, 78, 78, 0.3);
-    border: 1px solid #868686;
-    padding: 1.5rem;
-    border-radius: 25px;
     position: relative;
 
     .title
     {
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-        color: var(--secondary-color);
+        @include card-title-base;
 
         & svg
         {
-            width: 2.4rem;
-            height: 2.4rem;
-            margin-right: .5rem;
-            vertical-align: middle;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                width: 2.2rem;
-                height: 2.2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                width: 2rem;
-                height: 2rem;
-            }
+            @include card-title-icon;
         }
 
         &__text
         {
-            font-size: 2.4rem;
-            text-transform: uppercase;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                font-size: 2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                font-size: 1.8rem;
-            }
+            @include card-title-text;
         }
     }
 
-    .information
+    .info-container
     {
-        color: #fff;
-        font-size: 2.8rem;
-        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
 
-        @media (width <= 540px)
+        .information
         {
-            font-size: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+
+            color: #fff;
+            font-size: var(--font-size-base);
+            margin-top: 1rem;
+    
+            &__text
+            {
+                display: flex;
+                justify-content: space-between;
+
+                &:nth-child(2)
+                {
+                    position: relative;
+
+                    &::after
+                    {
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 1px;
+                        background-color: #9b9b9b;
+                        top: -1rem;
+                        left: 0;
+                    }
+
+                    &::before
+                    {
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 1px;
+                        background-color: #9b9b9b;
+                        bottom: -1rem;
+                        left: 0;
+                    }
+                }
+            }
         }
 
-        &__text
+        .wind-direction
         {
-            &:last-child
-            {
-                margin-top: .5rem;
-            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            & span
+            .compass
             {
-                font-size: 1.8rem;
-                color: #fff;
+                height: var(--compass-size);
+                width: var(--compass-size);
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                position: relative;
+
+                &__item
+                {
+                    height: var(--compass-item-size);
+                    width: .03rem;
+                    background-color: rgba(255, 255, 255, 0.466);
+                    position: absolute;
+                    top: calc(50% - var(--compass-item-size));
+                    left: 50%;
+                    transform: translateY(-50%);
+                    transform-origin: bottom center;
+
+                    @for $i from 0 through 71
+                    {
+                        &:nth-child(#{$i + 1})
+                        {
+                            $angle: $i * 5deg;
+                            transform: rotate($angle) translateY(calc(var(--compass-size) / 2));
+                        }
+                    }
+                }
+
+                &__arrow
+                {
+                    width: .2rem;
+                    height: var(--compass-size);
+                    position: relative;
+                    transform-origin: center center;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    transition: all 0.3s ease-in-out;
+
+                    &::after
+                    {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: .2rem;
+                        height: calc( var(--compass-size) / 2 - 3rem);
+                        background-color: #fff;
+                    }
+
+                    &::before
+                    {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: .2rem;
+                        height: calc( var(--compass-size) / 2 - 3rem);
+                        background-color: #fff;
+                    }
+                    
+                    &--head
+                    {
+                        content: '';
+                        position: absolute;
+                        top: 0%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #fff;
+                        width: 1rem;
+                        height: 1.5rem;
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                    }
+
+                    &--tail
+                    {
+                        content: '';
+                        position: absolute;
+                        bottom: 0%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #fff;
+                        width: 1rem;
+                        height: 1rem;
+                        border-radius: 50%;
+                    }
+                }
+
+                &__coordinates
+                {
+                    line-height: 1.2rem;
+                    font-size: var(--compass-coordinates-size);
+                    color: #fff;
+                    position: absolute;
+                    font-weight: bold;
+
+                    &:nth-of-type(1)
+                    {
+                        top: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+
+                    &:nth-of-type(2)
+                    {
+                        top: calc(50% - 1rem);
+                        left: 0;
+                    }
+
+                    &:nth-of-type(3)
+                    {
+                        left: 50%;
+                        transform: translateX(-50%);
+                        bottom: 0;
+                    }
+
+                    &:nth-of-type(4)
+                    {
+                        top: calc(50% - 1rem);
+                        right: 0;
+                    }
+
+                    &:nth-of-type(5)
+                    {
+                        height: min-content;
+                        display: flex;
+                        flex-direction: column;
+                        gap: .5rem;
+                        font-size: var(--compass-text-size);
+                        text-align: center;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
             }
         }
     }
+    
 
-    .wind-direction
-    {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #fff;
-        gap: .60rem;
-        position: absolute;
-        bottom: 2rem;
-        right: 2rem;
 
-        @media (width <= 400px)
-        {
-            bottom: 1.5rem;
-            right: 1.5rem;
-        }
-
-        & svg
-        {
-            width: 4rem;
-            height: 4rem;
-
-            @media (width <= 540px)
-            {
-                width: 3rem;
-                height: 3rem;
-            }
-        }
-
-        &__string
-        {
-            font-size: 2rem;
-
-            @media (width <= 540px)
-            {
-                font-size: 1.8rem;
-            }
-        }
-    }
 }

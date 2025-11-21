@@ -3,36 +3,42 @@
 .container
 {
     @include container-style;
-    display: flex;
-    flex-direction: column;
 
     .title
     {
         @include card-title-base;
-        gap: 1rem;
 
         & svg
         {
             @include card-title-icon;
-            color: var(--secondary-color);
         }
 
         &__text
         {
             @include card-title-text;
-            color: var(--secondary-color);
         }
     }
 
-    .number
+    &__number
     {
         @include big-number;
     }
 
-    .dewpoint
+    &__label
     {
         font-size: var(--font-size-base);
         color: #fff;
-        margin-top: auto;
+    }
+
+    .graphic
+    {
+        @include graphic;
+        margin-top: 2rem;
+
+        &__dot
+        {
+            @include graphic-dot;
+        }
     }
 }
+

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchBarComponent {
   isOpen = false;
   @Input() input: string = '';
-  @Output() search = new EventEmitter<string>();
+  readonly search = output<string>();
 
   OnSearchClick()
   {

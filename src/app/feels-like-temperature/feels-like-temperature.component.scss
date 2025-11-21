@@ -1,0 +1,34 @@
+@use "../../styles/mixin" as *;
+
+.container {
+    @include container-style;
+
+    .title {
+        @include card-title-base;
+
+        & > svg {
+            @include card-title-icon;
+        }
+
+        &__text {
+            @include card-title-text();
+            white-space: nowrap;
+            font-size: clamp(1.2rem, 2vw, 2rem);
+
+            @media (width <= 350px) {
+                font-size: clamp(1.2rem, 3vw, 1.4rem);
+            }
+        }
+    }
+
+    .feelsLikeTemperature {
+        @include big-number;
+    }   
+
+    .realTemperature
+    {
+        font-size: var(--font-size-base);
+        color: #fff;
+        margin-top: 1rem;
+    }
+}

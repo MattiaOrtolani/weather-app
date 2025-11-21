@@ -17,7 +17,7 @@ try {
         return res.status(500).json({ error: 'API_KEY non configurata nel server' });
     }
 
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.API_KEY}&q=${encodeURIComponent(qParam)}&days=${encodeURIComponent(days)}&lang=${encodeURIComponent(lang)}`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.API_KEY}&q=${encodeURIComponent(qParam)}&days=${encodeURIComponent(days)}&aqi=yes&lang=${encodeURIComponent(lang)}`;
     const apiRes = await fetch(url);
 
     if(!apiRes.ok) {

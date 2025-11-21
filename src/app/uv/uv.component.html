@@ -5,21 +5,21 @@
         </svg>
         <h1 class="title__text">Indice UV</h1>
     </div>
-    <p class="container__number">{{ uv }}</p>
+    <p class="container__number">{{ uv() }}</p>
     <p class="container__index">
-        @if(uv < 3)
+        @if(uv() < 3)
         {
             Basso
         }
-        @else if(uv < 6)
+        @else if(uv() < 6)
         {
             Moderato
         }
-        @else if(uv < 8)
+        @else if(uv() < 8)
         {
             Alto
         }
-        @else if(uv < 11)
+        @else if(uv() < 11)
         {
             Molto Alto
         }
@@ -28,4 +28,7 @@
             Estremo
         }
     </p>
+    <div #graphic class="graphic">
+        <div #dot class="graphic__dot"></div>
+    </div>
 </div>

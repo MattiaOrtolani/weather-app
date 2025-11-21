@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { AppService } from '../app.service';
 import { CommonModule } from '@angular/common';
 
@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sun-hours.component.scss'
 })
 export class SunHoursComponent {
-  @Input() astro: any;
+  readonly astro = input<any>();
 }

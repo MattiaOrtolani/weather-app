@@ -1,36 +1,37 @@
-import { AfterViewInit, Component, ElementRef, HostListener, input, OnChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, input, ViewChild } from '@angular/core';
 
 @Component({
-    selector: 'app-uv',
+    selector: 'app-air-quality',
     standalone: true,
     imports: [],
-    templateUrl: './uv.component.html',
-    styleUrl: './uv.component.scss',
+    templateUrl: './air-quality.component.html',
+    styleUrl: './air-quality.component.scss',
 })
-export class UvComponent implements AfterViewInit, OnChanges{
-    readonly uv = input.required<number>();
+export class AirQualityComponent {
+    readonly airQualityIndex = input.required<number>();
     @ViewChild('graphic', {static: true}) graphic?: ElementRef<HTMLDivElement>;
     @ViewChild('dot', {static: true}) graphicDot?: ElementRef<HTMLDivElement>;
 
     @HostListener('window:resize') onWindowResize(): void {
-        this.uvLevel();
+        this.airQualityLevel();
     }
-
 
     ngAfterViewInit()
     {
-        this.uvLevel();
+        this.airQualityLevel();
     }
 
     ngOnChanges()
     {
-        this.uvLevel();
+        this.airQualityLevel();
     }
     
-    uvLevel = () => {
+    airQualityLevel = () => {
         if (this.graphicDot === undefined || this.graphic === undefined) return;
         const maxLeft = this.graphic.nativeElement.clientWidth - this.graphicDot.nativeElement.clientWidth;
-        const position = (maxLeft / 11) * this.uv();
+        const position = (maxLeft / 6) * this.airQualityIndex();
         this.graphicDot.nativeElement.style.left = `${(position)}px`;
     }
+
 }
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeekTemperatureComponent } from './week-temperature/week-temperature.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +10,12 @@ import { AppService } from './app.service';
 import { WindComponent } from './wind/wind.component';
 import { MoonHoursComponent } from './moon-hours/moon-hours.component';
 import { LoadingItemComponent } from './loading-item/loading-item.component';
+import { FeelsLikeTemperatureComponent } from './feels-like-temperature/feels-like-temperature.component';
+import { VisibilityComponent } from './visibility/visibility.component';
+import { PrecipitationComponent } from './precipitation/precipitation.component';
+import { CloudCoverComponent } from './cloud-cover/cloud-cover.component';
+import { AirQualityComponent } from './air-quality/air-quality.component';
+import { PressureComponent } from './pressure/pressure.component';
 
 @Component({
     selector: 'app-root',
@@ -25,12 +31,19 @@ import { LoadingItemComponent } from './loading-item/loading-item.component';
         WindComponent,
         MoonHoursComponent,
         LoadingItemComponent,
+        FeelsLikeTemperatureComponent,
+        VisibilityComponent,
+        PrecipitationComponent,
+        CloudCoverComponent,
+        AirQualityComponent,
+        PressureComponent,
     ],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
     title = 'Weather App';
+    @ViewChild('background') background!: ElementRef<HTMLDivElement>;
     weatherData: any = null;
     resolve = false;
     errorMessage = '';
@@ -92,7 +105,46 @@ export class AppComponent implements OnInit {
     }
 
     onSelectedHour(event: any) {
-        console.log('Ora selezionata:', event);
         this.hourSelected = event;
+    }
+
+    currentHours(): number {
+        return new Date().getHours();
+    }
+
+    OnprevPressure() {
+        if (this.hourSelected > 0) {
+            return this.weatherData?.forecast?.forecastday?.[this.selectedDay]
+                ?.hour?.[this.hourSelected - 1]?.pressure_mb;
+        }
+
+        if (this.hourSelected == 0) {
+            return this.weatherData?.forecast?.forecastday?.[
+                this.selectedDay - 1
+            ]?.hour?.[23]?.pressure_mb;
+        }
+
+        return this.weatherData?.current?.pressure_mb;
+    }
+
+    OnPrecipitationForecastDay() {
+        for (let i = 0; i <= 3; i++) {
+            if (
+                this.weatherData?.forecast?.forecastday?.[this.selectedDay + i]
+                    ?.day?.totalprecip_mm > 0
+            ) {
+                return {
+                    date: this.weatherData?.forecast?.forecastday?.[
+                        this.selectedDay + i
+                    ]?.date,
+                    precipitationForecast:
+                        this.weatherData?.forecast?.forecastday?.[
+                            this.selectedDay + i
+                        ]?.day?.totalprecip_mm,
+                };
+            }
+        }
+
+        return undefined;
     }
 }

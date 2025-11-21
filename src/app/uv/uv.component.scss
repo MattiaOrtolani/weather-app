@@ -1,94 +1,45 @@
+@use '../../styles/mixin' as *;
+
 .container
 {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(78, 78, 78, 0.3);
-    border: 1px solid #868686;
-    border-radius: 20px;
-    padding: 1.5rem;
+    @include container-style;
+    display: flex;
+    flex-direction: column;
 
     .title
     {
-        display: flex;
-        align-items: center;
-        gap: .5rem;
-        color: var(--secondary-color);
+        @include card-title-base;
 
         & svg
         {
-            width: 2.4rem;
-            height: 2.4rem;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                width: 2.2rem;
-                height: 2.2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                width: 2rem;
-                height: 2rem;
-            }
+            @include card-title-icon;
         }
 
         &__text
         {
-            font-size: 2.4rem;
-            text-transform: uppercase;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                font-size: 2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                font-size: 1.8rem;
-            }
+            @include card-title-text;
         }
     }
 
     &__number
     {
-        font-size: 5rem;
-        margin-top: 1rem;
-        color: #fff;
-
-        @media (width <= 465px)
-        {
-            font-size: 4rem;
-        }
-
-        @media (width <= 400px)
-        {
-            font-size: 3.4rem;
-        }
+        @include big-number;
     }
 
     &__index
     {
-        font-size: 2.4rem;
+        font-size: var(--font-size-base);
         color: #fff;
+    }
 
-        @media (width <= 465px)
-        {
-            font-size: 2rem;
-        }
+    .graphic
+    {
+        @include graphic;
+        margin-top: auto;
 
-        @media (width <= 400px)
+        &__dot
         {
-            font-size: 1.8rem;
+            @include graphic-dot;
         }
     }
 }

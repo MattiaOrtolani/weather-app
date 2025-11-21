@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,8 +11,8 @@ import { DatePipe } from '@angular/common';
 
 export class WeekTemperatureComponent implements OnChanges 
 {
-  @Input() forecast: any;
-  @Output() selectDayEvent = new EventEmitter<any>();
+  readonly forecast = input<any>();
+  readonly selectDayEvent = output<any>();
   selectedDayIndex: number = 0;
 
   alignment: 'flex-start' | 'center' | 'flex-end' = 'flex-start';
@@ -24,12 +24,13 @@ export class WeekTemperatureComponent implements OnChanges
 
   ngOnChanges(_: SimpleChanges): void 
   {
-    if (!this.forecast || !this.forecast.forecastday) 
+    const forecast = this.forecast();
+    if (!forecast || !forecast.forecastday) 
     {
       return;
     }
 
-    const days = this.forecast.forecastday as Array<any>;
+    const days = forecast.forecastday as Array<any>;
     const mins = days.map(d => Number(d?.day?.mintemp_c)).filter(v => !Number.isNaN(v));
     const maxs = days.map(d => Number(d?.day?.maxtemp_c)).filter(v => !Number.isNaN(v));
 
@@ -74,13 +75,14 @@ export class WeekTemperatureComponent implements OnChanges
 
   private recomputeStyles(): void
   {
-    if (!this.forecast || !this.forecast.forecastday || this.span == null)
+    const forecast = this.forecast();
+    if (!forecast || !forecast.forecastday || this.span == null)
     {
       this.computedStyles = [];
       return;
     }
 
-    const days = this.forecast.forecastday as Array<any>;
+    const days = forecast.forecastday as Array<any>;
     this.computedStyles = days.map(d => {
       if (!d?.day)
       {

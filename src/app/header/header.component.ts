@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, output } from '@angular/core';
+import { Component, output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../app.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
@@ -17,9 +17,9 @@ export class HeaderComponent
 {
   appService = new AppService();
 
-  @Input() forecastday: any;
-  @Input() city: string = '';
-  @Output() search = new EventEmitter<string>();
+  readonly forecastday = input<any>();
+  readonly city = input<string>('');
+  readonly search = output<string>();
 
   onSearch(cityName: string)
   {

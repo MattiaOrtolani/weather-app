@@ -9,28 +9,31 @@
     .title
     {
         @include card-title-base;
-        gap: 1rem;
 
-        & svg
+        & > svg
         {
             @include card-title-icon;
-            color: var(--secondary-color);
         }
 
         &__text
         {
             @include card-title-text;
-            color: var(--secondary-color);
         }
     }
 
-    .number
+    .visibilityNumber
     {
         @include big-number;
+
+        & > span
+        {
+            font-size: var(--font-size-base);
+        }
     }
 
-    .dewpoint
+    .visibilityLabel
     {
+        margin-top: .35rem;
         font-size: var(--font-size-base);
         color: #fff;
         margin-top: auto;

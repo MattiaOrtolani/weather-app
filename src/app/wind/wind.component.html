@@ -5,15 +5,28 @@
         </svg>
         <h1 class="title__text">vento</h1>
     </div>
-    <div class="information">
-        <p class="information__text">{{ wind_speed }} <span>Km/h</span> </p>
-        <!-- <p class="information__text">{{ wind_degree }}°</p> -->
+    <div class="info-container">
+        <div class="information">
+            <p class="information__text">Vento: <span>{{ wind_speed() }} Km/h</span></p>
+            <p class="information__text">Direzione: <span>{{ wind_degree() }}° {{ wind_direction() }}</span></p>
+            <p class="information__text">Percepita: <span>{{ wind_chill() }}°C</span></p>
+        </div>
+        <div class="wind-direction">
+            <div class="compass">
+                @for (item of index; track $index) {
+                    <div class="compass__item"></div>
+                }
+                <div class="compass__arrow" [style.transform]="windDirectionStyle">
+                    <div class="compass__arrow--head"></div>
+                    <div class="compass__arrow--tail"></div>
+                </div>
+                <p class="compass__coordinates">N</p>
+                <p class="compass__coordinates">W</p>
+                <p class="compass__coordinates">S</p>
+                <p class="compass__coordinates">E</p>
+                <p class="compass__coordinates">{{ wind_speed() }}<span>Km/h</span></p>
+            </div>
+        </div>
     </div>
-    <div class="wind-direction">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16" class="wind-direction__icon">
-            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-        </svg>
-        <p class="wind-direction__string">{{ wind_direction }}</p>
-    </div>
+
 </div>

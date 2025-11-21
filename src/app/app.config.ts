@@ -1,6 +1,14 @@
 import { provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, provideZoneChangeDetection, LOCALE_ID } from '@angular/core';
+import {
+    ApplicationConfig,
+    LOCALE_ID,
+    provideZoneChangeDetection,
+} from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideHttpClient(), { provide: LOCALE_ID, useValue: 'it' }]
+    providers: [
+        provideZoneChangeDetection(),
+        provideHttpClient(),
+        { provide: LOCALE_ID, useValue: 'it' },
+    ],
 };

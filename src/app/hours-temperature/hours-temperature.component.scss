@@ -1,81 +1,24 @@
+@use '../../styles/mixin' as *;
+
 .container
 {
-    max-width: 98rem;
-    width: 100%;
-    height: 22.6rem;
-    background-color: rgba(78, 78, 78, 0.3);
-    border: 1px solid #868686;
+    @include container-style;
     backdrop-filter: blur(10px);
-    border-radius: 22px;
     display: grid;
-
-    @media (width <= 980px)
-    {
-        height: 21.9rem;
-    }
-
-    @media (width <= 465px)
-    {
-        height: 19.4rem;
-    }
-
-    @media (width <= 400px)
-    {
-        height: 17.4rem;
-    }
 
     .title
     {
-        display: flex;
-        align-items: center;
+        @include card-title-base;
         align-self: start;
-        gap: .5rem;
-        color: var(--secondary-color);
-        margin-top: 1.5rem;
-        margin-left: 1.5rem;
 
         & svg
         {
-            width: 2.4rem;
-            height: 2.4rem;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                width: 2.2rem;
-                height: 2.2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                width: 2rem;
-                height: 2rem;
-            }
+            @include card-title-icon;
         }
 
         &__text
         {
-            font-size: 2.4rem;
-            text-transform: uppercase;
-
-            // @media (width <= 540px)
-            // {
-            //     font-size: 2.4rem;
-            // }
-
-            @media (width <= 465px)
-            {
-                font-size: 2rem;
-            }
-
-            @media (width <= 400px)
-            {
-                font-size: 1.8rem;
-            }
+            @include card-title-text;
         }
     }
 
@@ -87,16 +30,16 @@
         height: max-content;
         padding: 0 1.5rem;
         align-self: end;
-        margin-bottom: 1.5rem;
+        margin: .75rem 0;
 
         @media (width <= 980px)
         {
-            margin-bottom: 1rem;
+            margin: .375rem 0;
         }
 
         @media (width <= 400px)
         {
-            margin-bottom: .75rem;
+            margin: .375rem 0;
         }
 
         .hour
@@ -110,9 +53,19 @@
             position: relative;
             padding: 2rem 0;
 
-            @media (width <= 480px)
+            @media (width <= 690px)
             {
-                padding: 1.5rem 0;
+                padding: 1.1rem 0;
+            }
+
+            @media (width <= 620px)
+            {
+                padding: 2rem 0;
+            }
+
+            @media (width <= 440px)
+            {
+                padding: 1.2rem 0;
             }
 
             @media (width <= 400px)
@@ -120,42 +73,7 @@
                 padding: 1rem 0;
             }
     
-            @for $i from 1 through 24
-            {
-                @if($i % 2 == 0)
-                {
-                    &:nth-child(#{$i})
-                    {
-    
-                        @if($i != 24)
-                        {
-                            &::after
-                            {
-                                content: '';
-                                width: 1px;
-                                height: 75%;
-                                background-color: #868686;
-                                position: absolute;
-                                right: 0;
-                                z-index: -1;
-                            }
-                        }
-    
-                        &::before
-                        {
-                            content: '';
-                            width: 1px;
-                            height: 75%;
-                            background-color: #868686;
-                            position: absolute;
-                            left: 0;
-                            z-index: -1;
-                        }
-                    }
-                }
-            }
-    
-            @media (width <= 540px)
+            @media (width <= 400px)
             {
                 min-width: 8.5rem;
             }
@@ -167,38 +85,24 @@
     
             &__number
             {
-                font-size: 2rem;
-                font-weight: 700;
+                font-size: var(--number-hours-font);
+                font-weight: var(--number-hours-weight);
                 color: #fff;
-    
-                @media (width <= 400px)
-                {
-                    font-size: 1.7rem;
-                }
             }
     
             &__temp
             {
-                font-size: 2rem;
-                font-weight: 600;
+                font-size: var(--number-hours-font);
+                font-weight: var(--number-hours-weight);
                 color: #fff;
-    
-                @media (width <= 400px)
-                {
-                    font-size: 1.7rem;
-                }
             }
     
             img
             {
-                width: 5rem;
-                height: 5rem;
+                width: var(--image-size);
+                height: var(--image-size);
     
-                @media (width <= 540px)
-                {
-                    width: 4rem;
-                    height: 4rem;
-                }
+                
             }   
         }
     }
@@ -210,4 +114,5 @@
     outline-offset: -2px;
     border-radius: 22px;
     z-index: 9999;
+    transition: all 0.15s ease-in-out;
 }
