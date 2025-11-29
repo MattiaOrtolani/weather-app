@@ -16,6 +16,7 @@ import { PrecipitationComponent } from './precipitation/precipitation.component'
 import { CloudCoverComponent } from './cloud-cover/cloud-cover.component';
 import { AirQualityComponent } from './air-quality/air-quality.component';
 import { PressureComponent } from './pressure/pressure.component';
+import { SnowComponent } from './snow/snow.component';
 
 @Component({
     selector: 'app-root',
@@ -37,6 +38,7 @@ import { PressureComponent } from './pressure/pressure.component';
         CloudCoverComponent,
         AirQualityComponent,
         PressureComponent,
+        SnowComponent,
     ],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
@@ -141,6 +143,31 @@ export class AppComponent implements OnInit {
                         this.weatherData?.forecast?.forecastday?.[
                             this.selectedDay + i
                         ]?.day?.totalprecip_mm,
+                };
+            }
+        }
+
+        return undefined;
+    }
+
+    OnSnowForecastDay() {
+        for (let i = 0; i <= 3; i++) {
+            const dayForecast =
+                this.weatherData?.forecast?.forecastday?.[
+                    this.selectedDay + i
+                ];
+
+            const day = dayForecast?.day;
+
+            if (
+                day &&
+                ((day as any).totalsnow_cm > 0 ||
+                    (day as any).daily_chance_of_snow > 0)
+            ) {
+                return {
+                    date: dayForecast?.date,
+                    snowForecast: (day as any).totalsnow_cm,
+                    chanceOfSnow: (day as any).daily_chance_of_snow,
                 };
             }
         }

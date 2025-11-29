@@ -134,6 +134,17 @@
 
             [precipitationForecast]="OnPrecipitationForecastDay()"
         />
+
+        <app-snow
+            [snow]="
+                weatherData?.forecast?.forecastday[selectedDay]?.hour[
+                    hourSelected
+                ]?.snow_cm ??
+                weatherData?.forecast?.forecastday[selectedDay]?.day
+                    ?.totalsnow_cm
+            "
+            [snowForecast]="OnSnowForecastDay()"
+        />
     </div>
     } @else {
     <app-loading-item></app-loading-item>

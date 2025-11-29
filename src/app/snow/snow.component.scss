@@ -1,0 +1,41 @@
+@use '../../styles/mixin' as *;
+
+.container
+{
+    @include container-style;
+    display: flex;
+    flex-direction: column;
+
+    .title
+    {
+        @include card-title-base;
+
+        & svg
+        {
+            @include card-title-icon;
+        }
+
+        &__text
+        {
+            @include card-title-text(.4rem);
+        }
+    }
+
+    &__number
+    {
+        @include big-number;
+
+        & > span
+        {
+            font-size: var(--font-size-base);
+        }
+    }
+
+    &__day-preview
+    {
+        font-size: var(--font-size-base);
+        color: #fff;
+        margin-top: auto;
+    }
+}
+
