@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 })
 export class MapsComponent {
     @ViewChild('map') map!: ElementRef<HTMLDivElement>;
-    readonly cords = input.required<{ lat: number; lon: number } | null>();
+    readonly cords = input.required<{ lat: number; lon: number }>();
     readonly selectedHour = input.required<number>();
     readonly selectedDay = input.required<string>();
     mapType: 'tmp2m' | 'precip' | 'mslp' | 'wind' = 'tmp2m';

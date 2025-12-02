@@ -143,9 +143,14 @@
         />
 
         <app-maps
-            [cords]="cords"
+            [cords]="{
+                lat: weatherData?.location?.lat,
+                lon: weatherData?.location?.lon
+            }"
             [selectedHour]="hourSelected"
-            [selectedDay]="weatherData?.forecast?.forecastday[selectedDay]?.date"
+            [selectedDay]="
+                weatherData?.forecast?.forecastday[selectedDay]?.date
+            "
         />
     </div>
     } @else {
