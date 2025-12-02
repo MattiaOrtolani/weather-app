@@ -1,0 +1,70 @@
+@use '../../styles/mixin' as *;
+
+.error
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 4rem);
+    width: 100%;
+    padding: 0 2rem;
+
+    &__card
+    {
+        @include container-style(2.5rem);
+        max-width: 50rem;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__icon
+    {
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto 0.5rem auto;
+        border-radius: 50%;
+        background: rgba(233, 78, 27, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg
+        {
+            width: 3.5rem;
+            height: 3.5rem;
+            stroke: var(--secondary-color);
+            stroke-width: 1.5;
+            fill: none;
+
+            path
+            {
+                fill: var(--secondary-color);
+                stroke: none;
+            }
+        }
+    }
+
+    &__title
+    {
+        font-size: 2.4rem;
+        color: #fff;
+    }
+
+    &__message
+    {
+        font-size: 1.8rem;
+        color: #fff;
+        opacity: 0.9;
+    }
+
+    &__hint
+    {
+        font-size: 1.6rem;
+        color: #fff;
+        opacity: 0.8;
+    }
+}
+

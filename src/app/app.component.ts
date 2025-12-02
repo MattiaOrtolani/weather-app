@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild,
+    inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeekTemperatureComponent } from './week-temperature/week-temperature.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +24,7 @@ import { AirQualityComponent } from './air-quality/air-quality.component';
 import { PressureComponent } from './pressure/pressure.component';
 import { SnowComponent } from './snow/snow.component';
 import { MapsComponent } from './maps/maps.component';
+import { LocationPermissionComponent } from './location-permission/location-permission.component';
 
 @Component({
     selector: 'app-root',
@@ -41,6 +48,7 @@ import { MapsComponent } from './maps/maps.component';
         PressureComponent,
         SnowComponent,
         MapsComponent,
+        LocationPermissionComponent,
     ],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
@@ -49,7 +57,7 @@ export class AppComponent implements OnInit {
     title = 'Weather App';
     @ViewChild('background') background!: ElementRef<HTMLDivElement>;
     weatherData: any = null;
-    resolve = false;
+    resolve: 'resolved' | 'pending' | 'error' = 'pending';
     errorMessage = '';
     selectedDay = 0;
     hourSelected = 0;
@@ -68,7 +76,7 @@ export class AppComponent implements OnInit {
                 this.appService.getForecast(coords.lat, coords.lon).subscribe({
                     next: (data) => {
                         this.weatherData = data;
-                        this.resolve = true;
+                        this.resolve = 'resolved';
                         console.log('getForecast:', this.weatherData);
                     },
                     error: (err) => {
@@ -85,6 +93,7 @@ export class AppComponent implements OnInit {
                 console.error('Errore geolocalizzazione:', err);
                 this.errorMessage =
                     'Geolocalizzazione disattivata o non disponibile.';
+                this.resolve = 'error';
             });
     }
 
@@ -96,14 +105,11 @@ export class AppComponent implements OnInit {
         this.appService.getForecastByCity(cityName).subscribe({
             next: (data) => {
                 this.weatherData = data;
-                this.resolve = true;
+                this.resolve = 'resolved';
                 console.log('getForecastByCity:', this.weatherData);
             },
-            error: (err) => {
-                console.error(
-                    'Errore nel recupero dei dati meteo per città:',
-                    err
-                );
+            error: () => {
+                this.resolve = 'resolved';
                 this.errorMessage =
                     'Impossibile ottenere i dati meteo per la città cercata.';
             },
@@ -157,9 +163,7 @@ export class AppComponent implements OnInit {
     OnSnowForecastDay() {
         for (let i = 0; i <= 3; i++) {
             const dayForecast =
-                this.weatherData?.forecast?.forecastday?.[
-                    this.selectedDay + i
-                ];
+                this.weatherData?.forecast?.forecastday?.[this.selectedDay + i];
 
             const day = dayForecast?.day;
 

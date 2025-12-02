@@ -1,0 +1,25 @@
+<section class="error">
+    <div class="error__card">
+        <div class="error__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M12 2C8 2 4.5 4.9 4.5 9.3c0 4.9 6.3 11.8 7.2 12.8.2.2.4.3.6.3s.4-.1.6-.3c.9-1 7.2-7.9 7.2-12.8C19.5 4.9 16 2 12 2zm0 10.2a1 1 0 1 1 0 2.1 1 1 0 0 1 0-2.1zm-1-6.4h2v5h-2z"
+                />
+                <line x1="4" y1="4" x2="20" y2="20" />
+            </svg>
+        </div>
+
+        <h1 class="error__title">Impossibile rilevare la posizione</h1>
+
+        <p class="error__message">
+            {{
+                message() || "Geolocalizzazione disattivata o non disponibile."
+            }}
+        </p>
+
+        <p class="error__hint">
+            Attiva la geolocalizzazione nelle impostazioni del browser e
+            aggiorna la pagina per visualizzare il meteo della tua zona.
+        </p>
+    </div>
+</section>
