@@ -1,9 +1,10 @@
 <main>
-    @if (resolve) {
+    @if (resolve === 'resolved') {
     <app-header
         [forecastday]="weatherData?.forecast?.forecastday[selectedDay]"
         [city]="weatherData?.location?.name"
-        (search)="onSearch($event); resolve = false"
+        (search)="onSearch($event)"
+        [errorMessage]="errorMessage"
     />
 
     <div class="grid">
@@ -153,7 +154,10 @@
             "
         />
     </div>
-    } @else {
+    } @else if (resolve === 'pending') {
     <app-loading-item></app-loading-item>
+    }
+    @else if (resolve === 'error') {
+    <app-location-permission [message]="errorMessage"></app-location-permission>
     }
 </main>
