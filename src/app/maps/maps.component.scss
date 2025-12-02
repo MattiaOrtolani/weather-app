@@ -1,0 +1,93 @@
+@use '../../styles/mixin' as *;
+
+
+.container
+{
+    @include container-style;
+    display: flex;
+    flex-direction: column;
+
+    .title
+    {
+        @include card-title-base;
+
+        &__text
+        {
+            @include card-title-text;
+        }
+    }
+
+    .map
+    {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        margin-top: 1rem;
+        border-radius: 2.2rem;
+        outline: none;
+
+        .button-layout
+        {
+            height: fit-content;
+            width: fit-content;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 9999;
+
+            .control
+            {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                &__zoom
+                {
+                    height: fit-content;
+                    width: fit-content;
+                    background-color: #5b5b5bbd;
+                    backdrop-filter: blur(10px);
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    padding: .75rem;
+                    border-radius: 8px;
+
+                    & > svg
+                    {
+                        color: #ffffff;
+                    }
+                }
+            }
+
+            .map-type
+            {
+                display: flex;
+                gap: .5rem;
+
+                &__button
+                {
+                    height: fit-content;
+                    width: fit-content;
+                    backdrop-filter: blur(10px);
+                    border: none;
+                    padding: .75rem;
+                    cursor: pointer;
+                    background-color: #5b5b5bbd;
+                    backdrop-filter: blur(10px);
+                    color: #fff;
+                    border-radius: 8px;
+                }
+
+                &__button--active
+                {
+                    background-color: var(--secondary-color);
+                    color: #fff;
+                }
+            }
+
+        }
+    }
+}

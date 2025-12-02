@@ -17,6 +17,7 @@ import { CloudCoverComponent } from './cloud-cover/cloud-cover.component';
 import { AirQualityComponent } from './air-quality/air-quality.component';
 import { PressureComponent } from './pressure/pressure.component';
 import { SnowComponent } from './snow/snow.component';
+import { MapsComponent } from './maps/maps.component';
 
 @Component({
     selector: 'app-root',
@@ -39,6 +40,7 @@ import { SnowComponent } from './snow/snow.component';
         AirQualityComponent,
         PressureComponent,
         SnowComponent,
+        MapsComponent,
     ],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit {
     errorMessage = '';
     selectedDay = 0;
     hourSelected = 0;
+    cords: { lat: number; lon: number } | null = null;
 
     private appService = inject(AppService);
 
@@ -60,6 +63,7 @@ export class AppComponent implements OnInit {
             .getCurrentPosition()
             .then((coords) => {
                 console.log('Coordinate utente:', coords);
+                this.cords = coords;
                 // Richiedi previsioni meteo
                 this.appService.getForecast(coords.lat, coords.lon).subscribe({
                     next: (data) => {

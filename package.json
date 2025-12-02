@@ -9,7 +9,7 @@
         "test": "ng test",
         "start:frontend": "ng serve --host 0.0.0.0 --port 4200 --proxy-config proxy.conf.json",
         "start:backend": "vercel dev",
-        "start:ngrok": "ngrok http 4200",
+        "start:ngrok": "ngrok http 4200 --log=stdout --log-format=term --log-level=info",
         "start:all": "concurrently -k -n backend,frontend -c green,cyan \"npm run start:backend\" \"npm run start:frontend\"",
         "start:frontend-public": "__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=mesenteronic-supernormally-marybelle.ngrok-free.dev ng serve --host 0.0.0.0 --port 4200 --proxy-config proxy.conf.json",
         "start:all-public": "concurrently -k -n backend,frontend,ngrok -c green,cyan,magenta \"npm run start:backend\" \"npm run start:frontend-public\" \"npm run start:ngrok\""
@@ -24,6 +24,7 @@
         "@angular/platform-browser-dynamic": "^19.2.0",
         "@angular/router": "^19.2.0",
         "chart.js": "^4.5.0",
+        "leaflet": "^1.9.4",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
         "zone.js": "^0.15.1"
@@ -33,6 +34,7 @@
         "@angular/cli": "^19.2.12",
         "@angular/compiler-cli": "^19.2.0",
         "@types/jasmine": "~5.1.0",
+        "@types/leaflet": "^1.9.21",
         "concurrently": "^9.2.0",
         "jasmine-core": "~5.6.0",
         "karma": "~6.4.0",

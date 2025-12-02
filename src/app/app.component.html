@@ -1,5 +1,3 @@
-
-
 <main>
     @if (resolve) {
     <app-header
@@ -30,7 +28,6 @@
                     hourSelected
                 ]?.pressure_mb ?? weatherData?.current?.pressure_mb
             "
-
             [prevPressure]="OnprevPressure()"
         />
 
@@ -131,7 +128,6 @@
                 weatherData?.forecast?.forecastday[selectedDay]?.day
                     ?.totalprecip_mm
             "
-
             [precipitationForecast]="OnPrecipitationForecastDay()"
         />
 
@@ -144,6 +140,12 @@
                     ?.totalsnow_cm
             "
             [snowForecast]="OnSnowForecastDay()"
+        />
+
+        <app-maps
+            [cords]="cords"
+            [selectedHour]="hourSelected"
+            [selectedDay]="weatherData?.forecast?.forecastday[selectedDay]?.date"
         />
     </div>
     } @else {
