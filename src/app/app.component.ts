@@ -102,6 +102,7 @@ export class AppComponent implements OnInit {
     }
 
     onSearch(cityName: string) {
+        this.resolve = 'pending'
         this.appService.getForecastByCity(cityName).subscribe({
             next: (data) => {
                 this.weatherData = data;
@@ -179,7 +180,6 @@ export class AppComponent implements OnInit {
                 };
             }
         }
-
         return undefined;
     }
 }
