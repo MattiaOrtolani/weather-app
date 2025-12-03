@@ -1,9 +1,20 @@
-<div class="container" [class.is-open]="isOpen">
-    <input type="text" class="container__input" placeholder="Cerca..." [(ngModel)]="input">
-    <button type="button" class="button" (click)="isOpen = !isOpen; OnSearchClick()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-    </button>
+<div class="container">
+    <input
+        type="text"
+        class="container__input"
+        placeholder="Cerca..."
+        [(ngModel)]="input"
+        (ngModelChange)="OnQueryChange($event)"
+        (keydown.enter)="OnSuggestionClick(suggestionResult[0]?.name)"
+    />
+    @if(input.length > 0) {
+    <div class="result">
+        @for (suggestion of suggestionResult; track $index) {
+        <p class="result__text" (click)="OnSuggestionClick(suggestion.name)">
+            {{ suggestion.name }}, {{ suggestion.country }}
+        </p>
+        }
+    </div>
+    }
     <!-- <p class="error-message">{{ errorMessage() }}</p> -->
 </div>

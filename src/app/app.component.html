@@ -1,10 +1,11 @@
+<app-menu (search)="onSearch($event)"/>
+
+
 <main>
     @if (resolve === 'resolved') {
     <app-header
         [forecastday]="weatherData?.forecast?.forecastday[selectedDay]"
         [city]="weatherData?.location?.name"
-        (search)="onSearch($event)"
-        [errorMessage]="errorMessage"
     />
 
     <div class="grid">

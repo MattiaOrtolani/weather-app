@@ -18,7 +18,7 @@ export class AppService {
                     (position) => {
                         resolve({
                             lat: position.coords.latitude,
-                            lon: position.coords.longitude
+                            lon: position.coords.longitude,
                         });
                     },
                     (error) => {
@@ -50,11 +50,22 @@ export class AppService {
         const q = city?.trim();
         if (q) {
             return this.http.get<any>(`/api/forecast`, {
-                params: { q }
+                params: { q },
             });
         } else {
             console.warn('Nome della città non disponibile');
             return of(null);
+        }
+    }
+
+    getSuggestions(query: string): Observable<string[]> {
+        if (query) {
+            return this.http.get<string[]>(`/api/searchSuggestion`, {
+                params: { q: query },
+            });
+        } else {
+            console.warn('Query per suggerimenti non disponibile');
+            return of([]);
         }
     }
 }

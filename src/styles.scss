@@ -1,29 +1,25 @@
 /* You can add global styles to this file, and also use other style files */
-@use './styles/typography' as *;
-@import 'leaflet/dist/leaflet.css';
+@use "./styles/typography" as *;
+@import "leaflet/dist/leaflet.css";
 
-:root
-{
+:root {
     --primary-color: #262b5b;
     --secondary-color: #e94e1b;
 }
 
-*
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
 }
 
-html
-{
+html {
     font-size: 62.5%; /* 1rem = 10px */
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
-body
-{
+body {
     min-height: calc(100dvh);
     display: flex;
     justify-content: center;

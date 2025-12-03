@@ -1,5 +1,4 @@
 <div class="container">
-    <app-search-bar (search)="onSearch($event)" [errorMessage]="errorMessage()" />
     <h1 class="title">{{ city() }}</h1>
     <h2 class="avg-temp">{{ forecastday()?.day?.avgtemp_c + "°" }}</h2>
     <h3 class="description">{{ forecastday()?.day?.condition?.text }}</h3>

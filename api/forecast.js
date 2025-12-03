@@ -21,9 +21,6 @@ try {
     const apiRes = await fetch(url);
 
     if(!apiRes.ok) {
-        if (apiRes.status === 400 || apiRes.status === 404) {
-            return res.status(404).json({ error: `Località non trovata: '${qParam}'` });
-        }
         throw new Error(`Errore API esterna: ${apiRes.status}`);
     }
 

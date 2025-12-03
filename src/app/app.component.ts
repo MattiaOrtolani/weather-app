@@ -25,31 +25,33 @@ import { PressureComponent } from './pressure/pressure.component';
 import { SnowComponent } from './snow/snow.component';
 import { MapsComponent } from './maps/maps.component';
 import { LocationPermissionComponent } from './location-permission/location-permission.component';
+import { MenuComponent } from "./menu/menu.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     imports: [
-        CommonModule,
-        WeekTemperatureComponent,
-        HeaderComponent,
-        HoursTemperatureComponent,
-        UvComponent,
-        HumidityComponent,
-        SunHoursComponent,
-        WindComponent,
-        MoonHoursComponent,
-        LoadingItemComponent,
-        FeelsLikeTemperatureComponent,
-        VisibilityComponent,
-        PrecipitationComponent,
-        CloudCoverComponent,
-        AirQualityComponent,
-        PressureComponent,
-        SnowComponent,
-        MapsComponent,
-        LocationPermissionComponent,
-    ],
+    CommonModule,
+    WeekTemperatureComponent,
+    HeaderComponent,
+    HoursTemperatureComponent,
+    UvComponent,
+    HumidityComponent,
+    SunHoursComponent,
+    WindComponent,
+    MoonHoursComponent,
+    LoadingItemComponent,
+    FeelsLikeTemperatureComponent,
+    VisibilityComponent,
+    PrecipitationComponent,
+    CloudCoverComponent,
+    AirQualityComponent,
+    PressureComponent,
+    SnowComponent,
+    MapsComponent,
+    LocationPermissionComponent,
+    MenuComponent
+],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
 })
