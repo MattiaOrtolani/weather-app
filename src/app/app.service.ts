@@ -64,7 +64,6 @@ export class AppService {
                 params: { q: query },
             });
         } else {
-            console.warn('Query per suggerimenti non disponibile');
             return of([]);
         }
     }

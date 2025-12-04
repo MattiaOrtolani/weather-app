@@ -1,8 +1,8 @@
-<app-menu (search)="onSearch($event)"/>
-
-
 <main>
     @if (resolve === 'resolved') {
+
+    <app-menu (search)="onSearch($event)"/>
+    
     <app-header
         [forecastday]="weatherData?.forecast?.forecastday[selectedDay]"
         [city]="weatherData?.location?.name"

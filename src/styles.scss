@@ -26,3 +26,9 @@ body {
     align-items: center;
     background-color: var(--primary-color);
 }
+
+@media (width <= 500px) {
+    body:has(app-menu .container.open) {
+        overflow: hidden;
+    }
+}

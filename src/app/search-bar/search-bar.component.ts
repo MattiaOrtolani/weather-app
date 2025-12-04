@@ -34,6 +34,8 @@ export class SearchBarComponent {
 
     OnSuggestionClick(cityName: string) {
         this.search.emit(cityName.trim());
+        this.query$.next('');
+        this.input = '';
     }
 
     OnQueryChange(value: string) 
