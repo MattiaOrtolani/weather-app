@@ -19,13 +19,14 @@
 
     & .icon
     {
-        width: 70%;
+        width: 55%;
         height: 0.3rem;
         background-color: white;
         border-radius: 0.15rem;
         transition: all 0.1s ease-in-out;
         position: relative;
-        transform-origin: right center;
+        transform-origin: center center;
+        transform: scale(0.9);
 
         &::after
         {
@@ -63,13 +64,18 @@
     z-index: 9998;
     top: 0;
     left: calc(-100% - 3rem);
-    background-color: #1e23499e;
+    background: linear-gradient(
+        180deg,
+        rgba(9, 9, 9, 0.45),
+        rgba(9, 9, 9, 0.2)
+    );
     backdrop-filter: blur(10px);
     transition: all 0.25s ease-in-out;
     padding: 1.25rem;
     padding-top: 7rem;
     margin: 1.5rem;
     border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
     
     @media (width <= 500px)
     {
@@ -78,7 +84,11 @@
         margin: 0rem;
         padding-top: 8.5rem;
         border-radius: 0;
-        background-color: var(--primary-color);
+        background: linear-gradient(
+            180deg,
+            rgba(9, 9, 9, 0.45),
+            rgba(9, 9, 9, 0.2)
+        );
     }
 }
 

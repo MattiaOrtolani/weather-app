@@ -4,7 +4,7 @@
 
 :root {
     --primary-color: #262b5b;
-    --secondary-color: #e94e1b;
+    --secondary-color: #ffffff;
 }
 
 * {
@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-color);
+    background: linear-gradient(315deg, #2a7fff, #8addff);
 }
 
 @media (width <= 500px) {

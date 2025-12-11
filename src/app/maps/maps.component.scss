@@ -11,6 +11,11 @@
     {
         @include card-title-base;
 
+        & svg
+        {
+            @include card-title-icon;
+        }
+
         &__text
         {
             @include card-title-text;
@@ -75,16 +80,16 @@
                     border: none;
                     padding: .75rem;
                     cursor: pointer;
-                    background-color: #5b5b5bbd;
-                    backdrop-filter: blur(10px);
-                    color: #fff;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    color: #ffffff;
                     border-radius: 8px;
                 }
 
                 &__button--active
                 {
-                    background-color: var(--secondary-color);
-                    color: #fff;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+                    color: #2a7fff;
                 }
             }
 

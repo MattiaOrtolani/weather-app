@@ -10,13 +10,13 @@
 @mixin card-title-base {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     color: var(--secondary-color);
 }
 
 @mixin card-title-icon {
-    width: var(--title-font);
-    height: var(--title-font);
+    width: 2.2rem;
+    height: 2.2rem;
 }
 
 @mixin card-title-text($less-font-size: 0rem) {
