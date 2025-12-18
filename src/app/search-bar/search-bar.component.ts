@@ -18,6 +18,17 @@ export class SearchBarComponent {
     errorMessage = input<string>('');
     private query$ = new Subject<string>();
     private appService = inject(AppService);
+
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            placeholder: 'Cerca...',
+        },
+        en: {
+            placeholder: 'Search...',
+        },
+    };
     
     constructor() {
         this.query$

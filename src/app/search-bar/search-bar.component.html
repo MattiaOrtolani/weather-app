@@ -2,7 +2,7 @@
     <input
         type="text"
         class="container__input"
-        placeholder="Cerca..."
+        [placeholder]="labels[lang].placeholder"
         [(ngModel)]="input"
         (ngModelChange)="OnQueryChange($event)"
         (keydown.enter)="OnSuggestionClick(suggestionResult[0]?.name)"

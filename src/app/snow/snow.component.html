@@ -13,7 +13,7 @@
             />
         </svg>
 
-        <h1 class="title__text">neve</h1>
+        <h1 class="title__text">{{ labels[lang].title }}</h1>
     </div>
     <p class="container__number">
         {{ snow() }}
@@ -21,9 +21,9 @@
     </p>
     <p class="container__day-preview">
         @if (snowForecast() !== null && snowForecast() !== undefined) {
-        Previsti:
+        {{ labels[lang].forecastPrefix }}
         {{ snowForecast()?.snowForecast }}<span>cm</span>
         {{ snowForecast()?.date | date : "EEEE" }}
-        } @else { Nessuna previsione di neve }
+        } @else { {{ labels[lang].noForecast }} }
     </p>
 </div>

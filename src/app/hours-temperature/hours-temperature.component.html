@@ -15,7 +15,7 @@
                 d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"
             />
         </svg>
-        <h1 class="title__text">Previsione oraria</h1>
+        <h1 class="title__text">{{ labels[lang].title }}</h1>
     </div>
     <div class="carousel" #carousel>
         @for( h of hour(); let i = $index; track i) {
@@ -25,7 +25,7 @@
             [class.selected-hour]="i === selectedHourIndex"
         >
             @if(i === currentHour && selectedDay() === 0) {
-            <p class="hour__number">Adesso</p>
+            <p class="hour__number">{{ labels[lang].now }}</p>
             } @else {
             <p class="hour__number">{{ i }}</p>
             }

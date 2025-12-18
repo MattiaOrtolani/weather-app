@@ -5,8 +5,10 @@ import {
     AfterViewInit,
     input,
     output,
+    inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-hours-temperature',
@@ -16,9 +18,24 @@ import { CommonModule } from '@angular/common';
     styleUrl: './hours-temperature.component.scss',
 })
 export class HoursTemperatureComponent implements AfterViewInit {
+    private readonly appService = inject(AppService);
+
     readonly hour = input<any>();
     readonly selectedHour = output<number>();
     readonly selectedDay = input<number>(0);
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            title: 'Previsione oraria',
+            now: 'Adesso',
+        },
+        en: {
+            title: 'Hourly forecast',
+            now: 'Now',
+        },
+    };
+
     currentHour: number = new Date().getHours();
     selectedHourIndex = this.currentHour;
 

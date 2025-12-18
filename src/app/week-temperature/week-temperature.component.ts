@@ -1,5 +1,6 @@
-import { Component, OnChanges, SimpleChanges, input, output } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, input, output, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-week-temperature',
@@ -11,9 +12,22 @@ import { DatePipe } from '@angular/common';
 
 export class WeekTemperatureComponent implements OnChanges 
 {
+  private readonly appService = inject(AppService);
+
   readonly forecast = input<any>();
   readonly selectDayEvent = output<any>();
   selectedDayIndex: number = 0;
+
+  readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+  labels = {
+    it: {
+      title: 'Previsione per 3 giorni'
+    },
+    en: {
+      title: '3-day forecast'
+    }
+  };
 
   alignment: 'flex-start' | 'center' | 'flex-end' = 'flex-start';
   computedStyles: Array<{ start: string; len: string; c1: string; c2: string }> = [];

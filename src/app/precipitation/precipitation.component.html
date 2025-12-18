@@ -17,7 +17,7 @@
                 d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z"
             />
         </svg>
-        <h1 class="title__text">precipitazioni</h1>
+        <h1 class="title__text">{{ labels[lang].title }}</h1>
     </div>
     <p class="container__number">
         {{ precipitation() }}
@@ -25,13 +25,13 @@
     </p>
     <p class="container__day-preview">
         @if(precipitationForecast() !== null) {
-            
-            Previsti: {{ precipitationForecast()?.precipitationForecast }}<span>mm</span
+            {{ labels[lang].forecastPrefix }}
+            {{ precipitationForecast()?.precipitationForecast }}<span>mm</span
             > {{ precipitationForecast()?.date | date:'EEEE' }}
         }
         @else
         {
-            Nessuna previsione disponibile    
+            {{ labels[lang].noForecast }}
         }
     </p>
 </div>

@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-cloud-cover',
@@ -8,6 +9,18 @@ import { Component, input } from '@angular/core';
     styleUrl: './cloud-cover.component.scss',
 })
 export class CloudCoverComponent {
-    readonly cloudCover = input.required<number>();
-}
+    private readonly appService = inject(AppService);
 
+    readonly cloudCover = input.required<number>();
+
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            title: 'nuvole',
+        },
+        en: {
+            title: 'clouds',
+        },
+    };
+}

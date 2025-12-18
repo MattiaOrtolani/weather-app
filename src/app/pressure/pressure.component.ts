@@ -1,4 +1,5 @@
-import { Component, ElementRef, input, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, ViewChild, inject } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-pressure',
@@ -8,6 +9,8 @@ import { Component, ElementRef, input, ViewChild } from '@angular/core';
     styleUrl: './pressure.component.scss',
 })
 export class PressureComponent {
+    private readonly appService = inject(AppService);
+
     readonly pressure = input.required<number>();
     readonly prevPressure = input.required<number>();
     index = Array.from({ length: 48 });
@@ -16,6 +19,17 @@ export class PressureComponent {
     readonly maxPressure = 1050;
     readonly minAngle = -120;
     readonly maxAngle = 120;
+
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            title: 'pressione',
+        },
+        en: {
+            title: 'pressure',
+        },
+    };
 
     calcPressureAngle() {
         const p = this.pressure();

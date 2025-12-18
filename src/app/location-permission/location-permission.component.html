@@ -9,17 +9,14 @@
             </svg>
         </div>
 
-        <h1 class="error__title">Impossibile rilevare la posizione</h1>
+        <h1 class="error__title">{{ labels[lang].title }}</h1>
 
         <p class="error__message">
-            {{
-                message() || "Geolocalizzazione disattivata o non disponibile."
-            }}
+            {{ message() || labels[lang].defaultMessage }}
         </p>
 
         <p class="error__hint">
-            Attiva la geolocalizzazione nelle impostazioni del browser e
-            aggiorna la pagina per visualizzare il meteo della tua zona.
+            {{ labels[lang].hint }}
         </p>
     </div>
 </section>

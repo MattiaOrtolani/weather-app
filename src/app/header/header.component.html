@@ -3,7 +3,7 @@
     <h2 class="avg-temp">{{ forecastday()?.day?.avgtemp_c + "°" }}</h2>
     <h3 class="description">{{ forecastday()?.day?.condition?.text }}</h3>
     <div class="min-max">
-        <p>max: {{ forecastday()?.day?.maxtemp_c + "°" }}</p>
-        <p>min: {{ forecastday()?.day?.mintemp_c + "°" }}</p>
+        <p>{{ labels[lang].max }} {{ forecastday()?.day?.maxtemp_c + "°" }}</p>
+        <p>{{ labels[lang].min }} {{ forecastday()?.day?.mintemp_c + "°" }}</p>
     </div>
 </div>

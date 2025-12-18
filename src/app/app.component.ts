@@ -67,6 +67,23 @@ export class AppComponent implements OnInit {
 
     private appService = inject(AppService);
 
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            weatherError: 'Impossibile ottenere i dati meteo.',
+            geoError: 'Geolocalizzazione disattivata o non disponibile.',
+            cityError:
+                'Impossibile ottenere i dati meteo per la città cercata.',
+        },
+        en: {
+            weatherError: 'Unable to retrieve weather data.',
+            geoError: 'Location disabled or not available.',
+            cityError:
+                'Unable to retrieve weather data for the searched city.',
+        },
+    };
+
     ngOnInit(): void {
         // Ottieni coordinate dal browser
         this.appService
@@ -86,15 +103,13 @@ export class AppComponent implements OnInit {
                             'Errore nel recupero dei dati meteo:',
                             err
                         );
-                        this.errorMessage =
-                            'Impossibile ottenere i dati meteo.';
+                        this.errorMessage = this.labels[this.lang].weatherError;
                     },
                 });
             })
             .catch((err) => {
                 console.error('Errore geolocalizzazione:', err);
-                this.errorMessage =
-                    'Geolocalizzazione disattivata o non disponibile.';
+                this.errorMessage = this.labels[this.lang].geoError;
                 this.resolve = 'error';
             });
     }
@@ -113,8 +128,7 @@ export class AppComponent implements OnInit {
             },
             error: () => {
                 this.resolve = 'resolved';
-                this.errorMessage =
-                    'Impossibile ottenere i dati meteo per la città cercata.';
+                this.errorMessage = this.labels[this.lang].cityError;
             },
         });
     }

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, input, OnChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, input, OnChanges, ViewChild, inject } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-uv',
@@ -8,6 +9,8 @@ import { AfterViewInit, Component, ElementRef, HostListener, input, OnChanges, V
     styleUrl: './uv.component.scss',
 })
 export class UvComponent implements AfterViewInit, OnChanges{
+    private readonly appService = inject(AppService);
+
     readonly uv = input.required<number>();
     @ViewChild('graphic', {static: true}) graphic?: ElementRef<HTMLDivElement>;
     @ViewChild('dot', {static: true}) graphicDot?: ElementRef<HTMLDivElement>;
@@ -15,6 +18,27 @@ export class UvComponent implements AfterViewInit, OnChanges{
     @HostListener('window:resize') onWindowResize(): void {
         this.uvLevel();
     }
+
+    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
+
+    labels = {
+        it: {
+            title: 'Indice UV',
+            low: 'Basso',
+            moderate: 'Moderato',
+            high: 'Alto',
+            veryHigh: 'Molto Alto',
+            extreme: 'Estremo',
+        },
+        en: {
+            title: 'UV Index',
+            low: 'Low',
+            moderate: 'Moderate',
+            high: 'High',
+            veryHigh: 'Very High',
+            extreme: 'Extreme',
+        },
+    };
 
 
     ngAfterViewInit()

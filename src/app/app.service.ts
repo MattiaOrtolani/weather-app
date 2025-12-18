@@ -9,6 +9,23 @@ export class AppService {
     constructor() {}
 
     /**
+     * Rileva la lingua del browser:
+     * - italiano se il browser è impostato in italiano
+     * - inglese per qualsiasi altra lingua
+     */
+    private getBrowserLang(): 'it' | 'en' {
+        const browserLang = navigator.language || (navigator as any).userLanguage;
+        return browserLang?.toLowerCase().startsWith('it') ? 'it' : 'en';
+    }
+
+    /**
+     * Lingua corrente usata dall'app
+     */
+    getCurrentLang(): 'it' | 'en' {
+        return this.getBrowserLang();
+    }
+
+    /**
      * Ottiene la posizione dell'utente dal browser
      */
     getCurrentPosition(): Promise<{ lat: number; lon: number }> {
@@ -36,7 +53,10 @@ export class AppService {
      */
     getForecast(lat: number, lon: number): Observable<any> {
         if (lat && lon) {
-            return this.http.get<any>(`/api/forecast?lat=${lat}&lon=${lon}`);
+            const lang = this.getBrowserLang();
+            return this.http.get<any>(`/api/forecast`, {
+                params: { lat, lon, lang },
+            });
         } else {
             console.warn('Coordinate non disponibili');
             return of(null);
@@ -49,8 +69,9 @@ export class AppService {
     getForecastByCity(city: string): Observable<any> {
         const q = city?.trim();
         if (q) {
+            const lang = this.getBrowserLang();
             return this.http.get<any>(`/api/forecast`, {
-                params: { q },
+                params: { q, lang },
             });
         } else {
             console.warn('Nome della città non disponibile');
