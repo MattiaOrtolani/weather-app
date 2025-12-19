@@ -1,11 +1,12 @@
 <img src="./public/banner.png" alt="Weather App Banner" />
 
-# Weather App
-
 ## Description
 Responsive weather application that shows current conditions and short‑term forecasts based on the user’s location or a searched city.  
 The interface provides a complete overview of temperature, feels‑like temperature, humidity, wind, precipitation, snow, air quality, cloud cover, pressure, visibility, UV index and daylight/nighttime hours, integrated with an interactive map.  
 The backend acts as a secure proxy to the external third‑party weather API, handling API keys and query parameters.
+
+## Deployment or Demo
+- Deployed URL: https://mattiaortolani-weather-app.vercel.app/
 
 ## Desktop Preview
 <img src="./public/desktop-application.png" alt="Desktop Application" width="600" />
@@ -175,12 +176,3 @@ weather-app/
     - `lang` – language for results.
 
 Integration happens exclusively through the project backend: the frontend calls `/api` endpoints, while the `API_KEY` is managed only on the server side.
-
-## Deployment or Demo
-- Deployed URL: https://mattiaortolani-weather-app.vercel.app/
-
-## Author
-- Development and maintenance: **Mattia Ortolani**
-
-## License
-- The project is distributed without an explicit license: the code is publicly available for read‑only inspection only and may not be used, copied, modified or redistributed.
