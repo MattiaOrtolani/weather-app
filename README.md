@@ -3,6 +3,7 @@
 ## Description
 Responsive weather application that shows current conditions and short‑term forecasts based on the user’s location or a searched city.  
 The interface provides a complete overview of temperature, feels‑like temperature, humidity, wind, precipitation, snow, air quality, cloud cover, pressure, visibility, UV index and daylight/nighttime hours, integrated with an interactive map.  
+When available, the browser coordinates are enriched via OpenStreetMap reverse geocoding so the forecast is requested for the most precise city name before reaching out to WeatherAPI.  
 The backend acts as a secure proxy to the external third‑party weather API, handling API keys and query parameters.
 
 ## Deployment or Demo
@@ -51,7 +52,7 @@ The backend acts as a secure proxy to the external third‑party weather API, ha
   - `http://localhost:4200`
 
 On startup:  
-- If the user grants geolocation permissions, the app uses the browser coordinates to fetch forecasts.  
+- If the user grants geolocation permissions, the app uses the browser coordinates and performs OpenStreetMap reverse geocoding via `/api/reverseGeocoding` to resolve the closest city name before requesting forecasts, improving positional accuracy.  
 - Alternatively, the user can search for a city via the search bar; the backend returns location suggestions and forecasts for the selected place.  
 - The interface displays a weather dashboard, hourly and daily charts, map, air‑quality indicators and other informative widgets.
 
@@ -102,8 +103,8 @@ weather-app/
   - `AppService` centralizes geolocation logic and internal API calls (`/api/forecast`, `/api/searchSuggestion`).
 
 - **Initial data flow**  
-  - In `ngOnInit`, `AppComponent` calls `getCurrentPosition()` from `AppService`, which uses `navigator.geolocation` to obtain latitude and longitude from the browser.  
-  - On success, it calls `getForecast(lat, lon)`, which performs an HTTP GET request to the internal endpoint `/api/forecast`.  
+- In `ngOnInit`, `AppComponent` calls `getCurrentPosition()` from `AppService`, which uses `navigator.geolocation` to obtain latitude and longitude from the browser.  
+- On success, it requests `/api/reverseGeocoding` through `getReverseGeocoding(lat, lon)` to translate the coordinates into the closest city name (via OpenStreetMap Nominatim). The obtained city — or the raw `lat,lon` string when a name is not available — is then sent to `getForecastByCity` to retrieve forecasts from `/api/forecast`, improving position precision.  
   - The response (weather forecast) is stored in `weatherData`, and the loading state is set to `resolved`; in case of error, error messages and the `error` state are set.
 
 - **Manual search and suggestions**  
@@ -157,9 +158,20 @@ weather-app/
   - Output:
     - JSON array of results, structured like WeatherAPI `search.json`.
 
+- **`GET /api/reverseGeocoding`**  
+  - Description: proxies OpenStreetMap Nominatim reverse geocoding to resolve the city or locality closest to the provided coordinates before the frontend requests a forecast, improving positional accuracy.  
+  - Query parameters:
+    - `lat` (number, required) – latitude.  
+    - `lon` (number, required) – longitude.  
+  - Rules:
+    - Both `lat` and `lon` are mandatory; otherwise the endpoint returns `400`.  
+    - The proxy enforces English responses via `accept-language` and relays any upstream error codes.  
+  - Output:
+    - Native Nominatim JSON payload with `address` components such as `city`, `town`, `region`, etc.
+
 ### External APIs (WeatherAPI)
 
-- **`https://api.weatherapi.com/v1/forecast.json`**  
+- **`https://api.weatherapi.com/v1/forecast.json`**
   - Used by `api/forecast.js`.  
   - Main parameters:
     - `key` – API key (`process.env.API_KEY`).  
