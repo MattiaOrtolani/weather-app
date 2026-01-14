@@ -7,15 +7,15 @@
     </div>
     <div class="moon-info">
         <p class="moon-info__text">
-            {{ labels[lang].rise }}:
+            {{ 'MOON.RISE' | translate }}:
             <span>{{ astro()?.moonrise }}</span>
         </p>
         <p class="moon-info__text">
-            {{ labels[lang].set }}:
+            {{ 'MOON.SET' | translate }}:
             <span>{{ astro()?.moonset }}</span>
         </p>
         <p class="moon-info__text">
-            {{ labels[lang].illumination }}:
+            {{ 'MOON.ILLUMINATION' | translate }}:
             <span>{{ astro()?.moon_illumination }}</span>
         </p>
     </div>

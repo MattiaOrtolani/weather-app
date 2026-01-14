@@ -1,33 +1,25 @@
 import { Component, OnChanges, SimpleChanges, input, output, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { AppService } from '../app.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-week-temperature',
-  standalone: true,
-  imports: [DatePipe],
-  templateUrl: './week-temperature.component.html',
-  styleUrl: './week-temperature.component.scss'
+    selector: 'app-week-temperature',
+    standalone: true,
+    imports: [DatePipe, TranslateModule],
+    templateUrl: './week-temperature.component.html',
+    styleUrl: './week-temperature.component.scss',
 })
 
-export class WeekTemperatureComponent implements OnChanges 
-{
-  private readonly appService = inject(AppService);
+export class WeekTemperatureComponent implements OnChanges {
+    private readonly translate = inject(TranslateService);
 
-  readonly forecast = input<any>();
-  readonly selectDayEvent = output<any>();
-  selectedDayIndex: number = 0;
+    readonly forecast = input<any>();
+    readonly selectDayEvent = output<any>();
+    selectedDayIndex: number = 0;
 
-  readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
-
-  labels = {
-    it: {
-      title: 'Previsione per 3 giorni'
-    },
-    en: {
-      title: '3-day forecast'
+    get locale(): string {
+        return this.translate.currentLang === 'it' ? 'it-IT' : 'en-US';
     }
-  };
 
   alignment: 'flex-start' | 'center' | 'flex-end' = 'flex-start';
   computedStyles: Array<{ start: string; len: string; c1: string; c2: string }> = [];

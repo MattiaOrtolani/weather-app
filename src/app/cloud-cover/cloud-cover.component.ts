@@ -1,26 +1,13 @@
-import { Component, input, inject } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component, input } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-cloud-cover',
     standalone: true,
-    imports: [],
+    imports: [TranslateModule],
     templateUrl: './cloud-cover.component.html',
     styleUrl: './cloud-cover.component.scss',
 })
 export class CloudCoverComponent {
-    private readonly appService = inject(AppService);
-
     readonly cloudCover = input.required<number>();
-
-    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
-
-    labels = {
-        it: {
-            title: 'nuvole',
-        },
-        en: {
-            title: 'clouds',
-        },
-    };
 }

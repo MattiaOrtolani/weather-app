@@ -1,17 +1,15 @@
-import { Component, ElementRef, input, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, input, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
-import { AppService } from '../app.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-maps',
     standalone: true,
-    imports: [],
+    imports: [TranslateModule],
     templateUrl: './maps.component.html',
     styleUrl: './maps.component.scss',
 })
 export class MapsComponent {
-    private readonly appService = inject(AppService);
-
     @ViewChild('map') map!: ElementRef<HTMLDivElement>;
     readonly cords = input.required<{ lat: number; lon: number }>();
     readonly selectedHour = input.required<number>();
@@ -19,17 +17,6 @@ export class MapsComponent {
     mapType: 'tmp2m' | 'precip' | 'mslp' | 'wind' = 'tmp2m';
     leafletMap!: L.Map;
     private weatherLayer?: L.TileLayer;
-
-    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
-
-    labels = {
-        it: {
-            title: 'mappe',
-        },
-        en: {
-            title: 'maps',
-        },
-    };
 
     ngAfterViewInit(): void {
         this.initMap();
@@ -105,5 +92,4 @@ export class MapsComponent {
         this.mapType = type;
         this.updateWeatherLayer();
     }
-
 }

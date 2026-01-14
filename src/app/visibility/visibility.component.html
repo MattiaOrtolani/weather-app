@@ -5,25 +5,25 @@
             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
         </svg>
         <h1 class="title__text">
-            {{ labels[lang].title }}
+            {{ 'VISIBILITY.TITLE' | translate }}
         </h1>
     </div>
     <p class="visibilityNumber">{{ visibility() }}<span>km</span></p>
     <p class="visibilityLabel">
         @if (visibility() >= 10) {
-            {{ labels[lang].veryGood }}
+            {{ 'VISIBILITY.VERY_GOOD' | translate }}
         }
         @else if (visibility() >= 5) {
-            {{ labels[lang].good }}
+            {{ 'VISIBILITY.GOOD' | translate }}
         }
         @else if (visibility() >= 2) {
-            {{ labels[lang].moderate }}
+            {{ 'VISIBILITY.MODERATE' | translate }}
         }
         @else if (visibility() >= 1) {
-            {{ labels[lang].poor }}
+            {{ 'VISIBILITY.POOR' | translate }}
         }
         @else {
-            {{ labels[lang].veryPoor }}
+            {{ 'VISIBILITY.VERY_POOR' | translate }}
         }
     </p>
 </div>

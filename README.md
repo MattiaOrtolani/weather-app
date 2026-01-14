@@ -18,6 +18,7 @@ The backend acts as a secure proxy to the external third‑party weather API, ha
 - `RxJS` for reactive handling of HTTP calls  
 - `Angular CLI` and `@angular-devkit/build-angular` for build, development and testing  
 - `Leaflet` for the interactive weather map  
+- `@ngx-translate/core` with JSON assets for runtime localization (Italian + English)  
 - `zone.js` for Angular change detection  
 - `Karma` and `Jasmine` for unit testing  
 - `concurrently` to run frontend, backend and public tunnel in parallel  
@@ -127,6 +128,12 @@ weather-app/
     - They validate input and check for the `API_KEY` environment variable.  
     - They call the external WeatherAPI service, handle errors and return normalized JSON to the frontend.  
   - `proxy.conf.json` routes all local `/api` requests to `http://localhost:3000`, keeping frontend (port `4200`) and backend separated.
+
+## Localization
+- `app.config.ts` registers `TranslateModule` and `provideTranslateHttpLoader`, pointing at `/i18n/{lang}.json` so English and Italian bundles are loaded before rendering.  
+- `I18nService` picks Italian whenever the browser language starts with `it`; otherwise it keeps the UI in English.  
+- The UI text lives inside `public/i18n/en.json` and `public/i18n/it.json`, where titles, labels, hints and moon phase names are centralized for easy updates.  
+- Error messages surfaced after API calls or exceptions stay in English to keep diagnostics predictable while the UI follows the visitor’s language preference.
 
 ## APIs Used
 

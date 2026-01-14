@@ -1,29 +1,14 @@
-import { Component, input, inject } from '@angular/core';
-import { AppService } from '../app.service';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-sun-hours',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, TranslateModule],
     templateUrl: './sun-hours.component.html',
     styleUrl: './sun-hours.component.scss',
 })
 export class SunHoursComponent {
-    private readonly appService = inject(AppService);
-
     readonly astro = input<any>();
-
-    readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
-
-    labels = {
-        it: {
-            title: 'Tramonto',
-            sunrise: 'levata del sole:',
-        },
-        en: {
-            title: 'Sunset',
-            sunrise: 'Sunrise:',
-        },
-    };
 }

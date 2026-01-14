@@ -1,0 +1,74 @@
+{
+    "HEADER": { "MAX": "max:", "MIN": "min:" },
+    "FEELS_LIKE": { "TITLE": "temp. percepita", "REAL": "Reale:" },
+    "HOURS": { "TITLE": "Previsione oraria", "NOW": "Adesso" },
+    "SNOW": {
+        "TITLE": "neve",
+        "FORECAST_PREFIX": "Previsti:",
+        "NO_FORECAST": "Nessuna previsione di neve"
+    },
+    "PRECIPITATION": {
+        "TITLE": "precipitazioni",
+        "FORECAST_PREFIX": "Previsti:",
+        "NO_FORECAST": "Nessuna previsione disponibile"
+    },
+    "MOON": {
+        "RISE": "Leva",
+        "SET": "Tramonto",
+        "ILLUMINATION": "Illuminazione lunare"
+    },
+    "MOON_PHASE": {
+        "NEW_MOON": "Luna nuova",
+        "WAXING_CRESCENT": "Luna crescente",
+        "FIRST_QUARTER": "Primo quarto",
+        "WAXING_GIBBOUS": "Gibbosa crescente",
+        "FULL_MOON": "Luna piena",
+        "WANING_GIBBOUS": "Gibbosa calante",
+        "LAST_QUARTER": "Ultimo quarto",
+        "WANING_CRESCENT": "Luna calante"
+    },
+    "WEEK": { "TITLE": "Previsione per 3 giorni" },
+    "SUN": { "TITLE": "Tramonto", "SUNRISE": "levata del sole:" },
+    "UV": {
+        "TITLE": "Indice UV",
+        "LOW": "Basso",
+        "MODERATE": "Moderato",
+        "HIGH": "Alto",
+        "VERY_HIGH": "Molto Alto",
+        "EXTREME": "Estremo"
+    },
+    "WIND": {
+        "TITLE": "vento",
+        "WIND": "Vento:",
+        "DIRECTION": "Direzione:",
+        "FEELS_LIKE": "Percepita:"
+    },
+    "VISIBILITY": {
+        "TITLE": "visibilità",
+        "VERY_GOOD": "Ottima visibilità",
+        "GOOD": "Buona visibilità",
+        "MODERATE": "Visibilità moderata",
+        "POOR": "Visibilità scarsa",
+        "VERY_POOR": "Visibilità molto scarsa"
+    },
+    "PRESSURE": { "TITLE": "pressione" },
+    "HUMIDITY": { "TITLE": "umidità", "DEW_POINT": "Punto di rugiada:" },
+    "CLOUD_COVER": { "TITLE": "nuvole" },
+    "SEARCH": { "PLACEHOLDER": "Cerca..." },
+    "AIR_QUALITY": {
+        "TITLE": "qualità dell'aria",
+        "AQI1": "Buona",
+        "AQI2": "Moderata",
+        "AQI3": "Critica",
+        "AQI4": "Insalubre",
+        "AQI5": "Molto insalubre",
+        "AQI6": "Pericolosa"
+    },
+    "MAPS": { "TITLE": "mappe" },
+    "LOCATION_PERMISSION": {
+        "TITLE": "Impossibile rilevare la posizione",
+        "DEFAULT_MESSAGE": "Geolocalizzazione disattivata o non disponibile.",
+        "HINT": "Attiva la geolocalizzazione nelle impostazioni del browser e aggiorna la pagina per visualizzare il meteo della tua zona."
+    },
+    "LOADING": { "TEXT": "Preparo il meteo..." }
+}

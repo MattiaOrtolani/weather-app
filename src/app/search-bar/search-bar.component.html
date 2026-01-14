@@ -2,7 +2,7 @@
     <input
         type="text"
         class="container__input"
-        [placeholder]="labels[lang].placeholder"
+        [placeholder]="'SEARCH.PLACEHOLDER' | translate"
         [(ngModel)]="input"
         (ngModelChange)="OnQueryChange($event)"
         (keydown.enter)="OnSuggestionClick(suggestionResult[0]?.name)"

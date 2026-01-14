@@ -21,10 +21,6 @@ export class AppService {
     /**
      * Lingua corrente usata dall'app
      */
-    getCurrentLang(): 'it' | 'en' {
-        return this.getBrowserLang();
-    }
-
     /**
      * Ottiene la posizione dell'utente dal browser
      */
@@ -39,11 +35,11 @@ export class AppService {
                         });
                     },
                     (error) => {
-                        reject('Geolocalizzazione negata o non disponibile');
+                        reject('Geolocation denied or not available');
                     }
                 );
             } else {
-                reject('Geolocalizzazione non supportata dal browser');
+                reject('Geolocation not supported by the browser');
             }
         });
     }

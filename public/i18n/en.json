@@ -1,0 +1,74 @@
+{
+    "HEADER": { "MAX": "max:", "MIN": "min:" },
+    "FEELS_LIKE": { "TITLE": "feels like", "REAL": "Actual:" },
+    "HOURS": { "TITLE": "Hourly forecast", "NOW": "Now" },
+    "SNOW": {
+        "TITLE": "snow",
+        "FORECAST_PREFIX": "Expected:",
+        "NO_FORECAST": "No snow expected"
+    },
+    "PRECIPITATION": {
+        "TITLE": "precipitation",
+        "FORECAST_PREFIX": "Expected:",
+        "NO_FORECAST": "No forecast available"
+    },
+    "MOON": {
+        "RISE": "Moonrise",
+        "SET": "Moonset",
+        "ILLUMINATION": "Moon illumination"
+    },
+    "MOON_PHASE": {
+        "NEW_MOON": "New Moon",
+        "WAXING_CRESCENT": "Waxing Crescent",
+        "FIRST_QUARTER": "First Quarter",
+        "WAXING_GIBBOUS": "Waxing Gibbous",
+        "FULL_MOON": "Full Moon",
+        "WANING_GIBBOUS": "Waning Gibbous",
+        "LAST_QUARTER": "Last Quarter",
+        "WANING_CRESCENT": "Waning Crescent"
+    },
+    "WEEK": { "TITLE": "3-day forecast" },
+    "SUN": { "TITLE": "Sunset", "SUNRISE": "Sunrise:" },
+    "UV": {
+        "TITLE": "UV Index",
+        "LOW": "Low",
+        "MODERATE": "Moderate",
+        "HIGH": "High",
+        "VERY_HIGH": "Very High",
+        "EXTREME": "Extreme"
+    },
+    "WIND": {
+        "TITLE": "wind",
+        "WIND": "Wind:",
+        "DIRECTION": "Direction:",
+        "FEELS_LIKE": "Feels like:"
+    },
+    "VISIBILITY": {
+        "TITLE": "visibility",
+        "VERY_GOOD": "Excellent visibility",
+        "GOOD": "Good visibility",
+        "MODERATE": "Moderate visibility",
+        "POOR": "Poor visibility",
+        "VERY_POOR": "Very poor visibility"
+    },
+    "PRESSURE": { "TITLE": "pressure" },
+    "HUMIDITY": { "TITLE": "humidity", "DEW_POINT": "Dew point:" },
+    "CLOUD_COVER": { "TITLE": "clouds" },
+    "SEARCH": { "PLACEHOLDER": "Search..." },
+    "AIR_QUALITY": {
+        "TITLE": "air quality",
+        "AQI1": "Good",
+        "AQI2": "Moderate",
+        "AQI3": "Unhealthy for sensitive groups",
+        "AQI4": "Unhealthy",
+        "AQI5": "Very unhealthy",
+        "AQI6": "Hazardous"
+    },
+    "MAPS": { "TITLE": "maps" },
+    "LOCATION_PERMISSION": {
+        "TITLE": "Unable to detect location",
+        "DEFAULT_MESSAGE": "Location disabled or not available.",
+        "HINT": "Enable location in your browser settings and reload the page to see the weather for your area."
+    },
+    "LOADING": { "TEXT": "Loading weather..." }
+}

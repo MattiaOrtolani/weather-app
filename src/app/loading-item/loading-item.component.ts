@@ -1,23 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { AppService } from '../app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-loading-item',
-  standalone: true,
-  imports: [],
-  templateUrl: './loading-item.component.html',
-  styleUrl: './loading-item.component.scss'
+    selector: 'app-loading-item',
+    standalone: true,
+    imports: [],
+    templateUrl: './loading-item.component.html',
+    styleUrl: './loading-item.component.scss',
 })
 export class LoadingItemComponent {
+    private readonly translate = inject(TranslateService);
 
-  private readonly appService = inject(AppService);
-
-  readonly lang: 'it' | 'en' = this.appService.getCurrentLang();
-
-  private readonly textByLang: Record<'it' | 'en', string> = {
-    it: 'Preparo il meteo...',
-    en: 'Loading weather...',
-  };
-
-  loading_text = this.textByLang[this.lang].split('');
+    get loadingTextChars(): string[] {
+        const text = this.translate.instant('LOADING.TEXT');
+        return text.split('').map((letter: string) =>
+            letter === ' ' ? '\u00A0' : letter
+        );
+    }
 }
