@@ -25,33 +25,33 @@ import { PressureComponent } from './pressure/pressure.component';
 import { SnowComponent } from './snow/snow.component';
 import { MapsComponent } from './maps/maps.component';
 import { LocationPermissionComponent } from './location-permission/location-permission.component';
-import { MenuComponent } from "./menu/menu.component";
+import { MenuComponent } from './menu/menu.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     imports: [
-    CommonModule,
-    WeekTemperatureComponent,
-    HeaderComponent,
-    HoursTemperatureComponent,
-    UvComponent,
-    HumidityComponent,
-    SunHoursComponent,
-    WindComponent,
-    MoonHoursComponent,
-    LoadingItemComponent,
-    FeelsLikeTemperatureComponent,
-    VisibilityComponent,
-    PrecipitationComponent,
-    CloudCoverComponent,
-    AirQualityComponent,
-    PressureComponent,
-    SnowComponent,
-    MapsComponent,
-    LocationPermissionComponent,
-    MenuComponent
-],
+        CommonModule,
+        WeekTemperatureComponent,
+        HeaderComponent,
+        HoursTemperatureComponent,
+        UvComponent,
+        HumidityComponent,
+        SunHoursComponent,
+        WindComponent,
+        MoonHoursComponent,
+        LoadingItemComponent,
+        FeelsLikeTemperatureComponent,
+        VisibilityComponent,
+        PrecipitationComponent,
+        CloudCoverComponent,
+        AirQualityComponent,
+        PressureComponent,
+        SnowComponent,
+        MapsComponent,
+        LocationPermissionComponent,
+        MenuComponent,
+    ],
     styleUrl: './app.component.scss',
     templateUrl: './app.component.html',
 })
@@ -79,8 +79,7 @@ export class AppComponent implements OnInit {
         en: {
             weatherError: 'Unable to retrieve weather data.',
             geoError: 'Location disabled or not available.',
-            cityError:
-                'Unable to retrieve weather data for the searched city.',
+            cityError: 'Unable to retrieve weather data for the searched city.',
         },
     };
 
@@ -91,21 +90,47 @@ export class AppComponent implements OnInit {
             .then((coords) => {
                 console.log('Coordinate utente:', coords);
                 this.cords = coords;
-                // Richiedi previsioni meteo
-                this.appService.getForecast(coords.lat, coords.lon).subscribe({
-                    next: (data) => {
-                        this.weatherData = data;
-                        this.resolve = 'resolved';
-                        console.log('getForecast:', this.weatherData);
-                    },
-                    error: (err) => {
-                        console.error(
-                            'Errore nel recupero dei dati meteo:',
-                            err
-                        );
-                        this.errorMessage = this.labels[this.lang].weatherError;
-                    },
-                });
+                // Ottieni città tramite reverse geocoding e poi i dati meteo
+                this.appService
+                    .getReverseGeocoding(coords.lat, coords.lon)
+                    .subscribe({
+                        // Usare nome della città per ottenere i dati meteo
+                        next: (data) => {
+                            console.log(data);
+                            if (data.address.city) {
+                                this.appService
+                                    .getForecastByCity(data.address.city || `${this.cords!.lat},${this.cords!.lon}`)
+                                    .subscribe({
+                                        next: (data) => {
+                                            this.weatherData = data;
+                                            this.resolve = 'resolved';
+                                            console.log(
+                                                'getForecast:',
+                                                this.weatherData
+                                            );
+                                        },
+                                        error: (err) => {
+                                            console.error(
+                                                'Errore nel recupero dei dati meteo:',
+                                                err
+                                            );
+                                            this.errorMessage =
+                                                this.labels[
+                                                    this.lang
+                                                ].weatherError;
+                                        },
+                                    });
+                            }
+                        },
+                        error: (err) => {
+                            console.error(
+                                'Errore nel recupero del nome della città:',
+                                err
+                            );
+                            this.errorMessage =
+                                this.labels[this.lang].weatherError;
+                        }
+                    });
             })
             .catch((err) => {
                 console.error('Errore geolocalizzazione:', err);
@@ -119,7 +144,7 @@ export class AppComponent implements OnInit {
     }
 
     onSearch(cityName: string) {
-        this.resolve = 'pending'
+        this.resolve = 'pending';
         this.appService.getForecastByCity(cityName).subscribe({
             next: (data) => {
                 this.weatherData = data;

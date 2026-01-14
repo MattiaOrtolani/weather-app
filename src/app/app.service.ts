@@ -88,4 +88,15 @@ export class AppService {
             return of([]);
         }
     }
+
+    getReverseGeocoding(lat: number, lon: number): Observable<any> {
+        if (lat && lon) {
+            return this.http.get<any>(`/api/reverseGeocoding`, {
+                params: { lat: lat, lon: lon },
+            });
+        } else {
+            console.warn('Coordinate non disponibili per geocoding inverso');
+            return of(null);
+        }
+    }
 }
