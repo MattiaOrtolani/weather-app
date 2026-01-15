@@ -80,29 +80,19 @@ export class AppComponent implements OnInit {
                     .subscribe({
                         // Usare nome della città per ottenere i dati meteo
                         next: (data) => {
-                            console.log(data);
-                            if (data.address.city) {
-                                this.appService
-                                    .getForecastByCity(data.address.city || `${this.cords!.lat},${this.cords!.lon}`)
-                                    .subscribe({
-                                        next: (data) => {
-                                            this.weatherData = data;
-                                            this.resolve = 'resolved';
-                                            console.log(
-                                                'getForecast:',
-                                                this.weatherData
-                                            );
-                                        },
-                                        error: (err) => {
-                                            console.error(
-                                                'Error retrieving weather data:',
-                                                err
-                                            );
-                                            this.errorMessage =
-                                                'Unable to retrieve weather data.';
-                                        },
-                                    });
-                            }
+                            console.log('Reverse geocoding result:', data);
+
+                            this.appService.getForecastByCity(data.address.city || data.address.town || `${this.cords!.lat},${this.cords!.lon}`).subscribe({
+                                next: (data) => {
+                                    this.weatherData = data;
+                                    this.resolve = 'resolved';
+                                    console.log('getForecast:', this.weatherData);
+                                },
+                                error: (err) => {
+                                    console.error('Error retrieving weather data:', err);
+                                    this.errorMessage = 'Unable to retrieve weather data.';
+                                },
+                            });
                         },
                         error: (err) => {
                             console.error(

@@ -7,13 +7,27 @@ export default async function handler(req, res) {
 
     let qParam = {lat, lon};
 
-    let url = `https://nominatim.openstreetmap.org/reverse?&format=jsonv2&lat=${encodeURIComponent(qParam.lat)}&lon=${encodeURIComponent(qParam.lon)}&addressdetails=1&accept-language=en`;
-    const apiRes = await fetch(url);
+    const url = `https://nominatim.openstreetmap.org/reverse?&format=jsonv2&lat=${encodeURIComponent(
+        qParam.lat
+    )}&lon=${encodeURIComponent(qParam.lon)}&addressdetails=1&accept-language=en`;
 
-    if(!apiRes.ok) {
-        return res.status(500).json({ error: `Errore API esterna: ${apiRes.status}` });
+    try {
+        const apiRes = await fetch(url, {
+            headers: {
+                'User-Agent': 'weather-app (https://github.com/MattiaOrtolani/weather-app.git)',
+            },
+        });
+
+        if (!apiRes.ok) {
+            const errorBody = await apiRes.text();
+            console.error('Reverse geocoding API error', apiRes.status, errorBody);
+            return res.status(500).json({ error: `Errore API esterna: ${apiRes.status}` });
+        }
+
+        const data = await apiRes.json();
+        return res.status(200).json(data);
+    } catch (error) {
+        console.error('Reverse geocoding failure:', error);
+        return res.status(500).json({ error: 'Errore durante la chiamata a OpenStreetMap' });
     }
-    
-    const data = await apiRes.json();
-    return res.status(200).json(data);
 }

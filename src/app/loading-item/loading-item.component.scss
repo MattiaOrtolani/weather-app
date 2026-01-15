@@ -152,7 +152,7 @@
         {
             animation: letterBounce 4.5s ease-in-out infinite 4s;
 
-            @for $i from 0 through 17
+            @for $i from 0 through 19
             {
                 &:nth-child(#{$i})
                 {
